@@ -1,0 +1,717 @@
+[
+ {
+  "年份": 2009,
+  "题号": 1,
+  "内容": "<div class=\"content\"><p>为解决计算机与打印机之间速度不匹配的问题，通常设置一个打印数据缓冲区，主机将要输出的数据依次写入该缓冲区，而打印机则依次从该缓冲区中取出数据。该缓冲区的逻辑结构应该是（ ）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 栈",
+   "B. 队列",
+   "C. 树",
+   "D. 图"
+  ],
+  "答案": "B",
+  "解析": "缓冲区 的概念出现在操作系统的设备管理中，其特点是先进先出。缓冲区的作用是解决主机与打印机之间速度不匹配的问题，而不应改变打印数据的顺序。若用栈，先进入缓冲区的数据则要排队到最后才能打印，显然不符题意，故选 B。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "线性表"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 2,
+  "内容": "<div class=\"content\"><p>设栈 S 和队列 Q 的初始状态均为空，元素 a, b, c, d, e, f, g 依次进入栈 S 。若每个元素出栈后立即进入队列 Q，且 7 个元素出队的顺序是 b, d, c, f, e, a, g，则栈 S 的容量至少是（ ）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 1",
+   "B. 2",
+   "C. 3",
+   "D. 4"
+  ],
+  "答案": "C",
+  "解析": "由于队列的特点是先进先出，即栈 S 的出栈顺序就是队 Q 的出队顺序。故本题只需注意栈的特点是先进后出。出入栈的详细过程见下表。\n序号\n说明\n栈内\n栈外\n序号\n说明\n栈内\n栈外\n1\na 入栈\nA\n8\ne 入栈\nae\nbdc\n2\nb 入栈\nAb\n9\nf 入栈\naef\nbdc\n3\nb 出栈\nA\nb\n10\nf 出栈\nae\nbdcf\n4\nc 入栈\nAc\nb\n11\ne 出栈\na\nbdcfe\n5\nd 入栈\nAcd\nb\n12\na 出栈\nbdcfea\n6\nd 出栈\nAc\nbd\n13\ng 入栈\ng\nbdcfea\n7\nc 出栈\nA\nbdc\n14\ng 出栈\nbdcfeag\n栈内的最大深度为 3，故栈 S 的容量至少是 3。\n【另解】元素的出栈顺序是 b,d,c,f,e,a,g，可推出进栈出栈顺序为 Push(S,a), Push(S,b), Pop(S,b), Push(S,c), Push(S,d), Pop(S,d), Pop(S,c), Push(S,e), Push(S,f), Pop(S,f), Pop(S,e), Pop(S,a), Push(S,g), Pop(S,g)。假设初始所需容量为 0，每做一次 Push 进行一次“+1”操作，每做一次 Pop 进行一次“-1”操作，记录容量的最大值为 3，所以选 C。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "栈和队列"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 3,
+  "内容": "<div class=\"content\"><p>给定二叉树如右图所示。设 N 代表二叉树的根，L 代表根结点的左子树，R 代表根结点的右子树。若遍历后的结点序列是 3，1，7，5，6，2，4，则其遍历方式是（）。</p>\n<div class=\"svg-wrapper\"><div class=\"svg-container\" style=\"height:auto;width:40%\"><!DOCTYPE html>\n\n<svg content='&lt;mxfile host=\"Electron\" agent=\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36\" version=\"24.7.17\" scale=\"1\" border=\"0\"&gt;\n &lt;diagram name=\"Page-1\" id=\"AgFzAWKKCmqgys-U5iuM\"&gt;\n &lt;mxGraphModel dx=\"768\" dy=\"537\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\" pageScale=\"1\" pageWidth=\"827\" pageHeight=\"1169\" math=\"0\" shadow=\"0\"&gt;\n &lt;root&gt;\n &lt;mxCell id=\"0\" /&gt;\n &lt;mxCell id=\"1\" parent=\"0\" /&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-1\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;1&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"160\" y=\"160\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-2\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;2&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"100\" y=\"240\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-3\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;3&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"220\" y=\"240\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-4\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;4&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"40\" y=\"320\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-5\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;5&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"160\" y=\"320\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-6\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;6&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"100\" y=\"400\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-7\" value=\"&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;7&amp;lt;/font&amp;gt;\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"220\" y=\"400\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-8\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\" edge=\"1\" parent=\"1\" source=\"8a4ovbRtIK3ML8qCdcJa-2\" target=\"8a4ovbRtIK3ML8qCdcJa-1\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"30\" y=\"300\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"80\" y=\"250\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-9\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\" edge=\"1\" parent=\"1\" source=\"8a4ovbRtIK3ML8qCdcJa-3\" target=\"8a4ovbRtIK3ML8qCdcJa-1\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"130\" y=\"250\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"176\" y=\"204\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-10\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\" edge=\"1\" parent=\"1\" source=\"8a4ovbRtIK3ML8qCdcJa-4\" target=\"8a4ovbRtIK3ML8qCdcJa-2\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"250\" y=\"250\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"204\" y=\"204\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-11\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\" edge=\"1\" parent=\"1\" source=\"8a4ovbRtIK3ML8qCdcJa-5\" target=\"8a4ovbRtIK3ML8qCdcJa-2\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"70\" y=\"330\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"116\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-12\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\" edge=\"1\" parent=\"1\" source=\"8a4ovbRtIK3ML8qCdcJa-6\" target=\"8a4ovbRtIK3ML8qCdcJa-5\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"190\" y=\"330\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"144\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"8a4ovbRtIK3ML8qCdcJa-13\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\" edge=\"1\" parent=\"1\" source=\"8a4ovbRtIK3ML8qCdcJa-7\" target=\"8a4ovbRtIK3ML8qCdcJa-5\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"130\" y=\"410\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"176\" y=\"364\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;/root&gt;\n &lt;/mxGraphModel&gt;\n &lt;/diagram&gt;\n&lt;/mxfile&gt;' height=\"282\" viewbox=\"-.5 -.5 222 282\" width=\"222\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<defs>\n<pattern height=\"300\" id=\"watermark-pattern\" patterntransform=\"rotate(0)\" patternunits=\"userSpaceOnUse\" width=\"300\" x=\"0\" y=\"0\">\n<text fill=\"rgba(0,0,0,0.05)\" font-family=\"Arial, sans-serif\" font-size=\"24\" font-weight=\"bold\" x=\"0\" y=\"150\">408真题系统</text>\n</pattern>\n</defs>\n<rect fill=\"url(#watermark-pattern)\" fill-opacity=\"1\" height=\"100%\" pointer-events=\"none\" shape-rendering=\"crispEdges\" stroke=\"none\" width=\"100%\" x=\"0\" y=\"0\"></rect><defs></defs><g><g data-cell-id=\"0\"><g data-cell-id=\"1\"><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-1\"><g><ellipse cx=\"140\" cy=\"20\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 121px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">1</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"121\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAABYCAYAAAAJKj6VAAAAAXNSR0IArs4c6QAAAu5JREFUeF7tmK2qlWEQRtcJFkGxaDjFZhB/kuANaDGIzWAVxKh3csBiNdjs3oZGvQLjAbueoMjmfPp8Iy8TZu087wyzZu0H9j7CjwQWEjha2NvWEkDBlGApAQVbitfmCqYDSwko2FK8NlcwHVhKQMGW4rW5gunAUgIKthSvzRVsvwPXgQsHz77ubzPjhYLtu/NF4Ps5T+4An/e1mlGtYPvu/BD4eM6Tu8Cnfa1mVCvYvju/BZ4rWA5NwXJWV4FvG+Um2AYYBcsFe/NTsJcKlgM7q1SwjNdT4P1fSk0wEywz6aDqGHgFvP7HawVTsEiwy8At4B7wCHgQvQIFU7BNVU6A28BN4Foo1GGZginYpjqnwKWiWL+eKZiCKdh/folKz/0VCSZYSZ3skYIpWGZKsUrB4D5wJeD3GHjhH60BqT9KFCzn9Qx4p2A5sLNKBct5KVjO6nelguXQFCxnpWAFVgpWgGaC5dAULGdlghVYKVgBmgmWQ1OwnJUJVmClYAVoJlgOTcFyViZYgZWCFaCZYDk0BctZmWAFVgpWgGaC5dAULGdlghVYKVgBmgmWQ1OwnJUJVmClYAVoJlgOTcFyViZYgZWCFaCZYDk0BctZmWAFVgpWgGaC5dAULGdlghVYKVgBmgmWQ1OwnJUJVmClYAVoJlgOTcFyViZYgZWCFaCZYDk0BctZmWAFVgpWgGaC5dAULGdlghVYKVgBmgmWQ3sCfNgovwF8yVvNqVSwObdu2VTBWrDPGapgc27dsqmCtWCfM1TB5ty6ZVMFa8E+Z6iCzbl1y6YK1oJ9zlAFm3Prlk0VrAX7nKEKNufWLZsqWAv2OUMVbM6tWzZVsBbsc4Yq2Jxbt2yqYC3Y5wxVsDm3btlUwVqwzxmqYHNu3bKpgrVgnzNUwebcumVTBWvBPmeogs25dcumCtaCfc5QBZtz65ZNFawF+5yhCjbn1i2bKlgL9jlDFWzOrVs2VbAW7HOGKticW7dsqmAt2OcM/QFNe1tZ94SqjQAAAABJRU5ErkJggg==\" y=\"11\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-2\"><g><ellipse cx=\"80\" cy=\"100\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 100px; margin-left: 61px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">2</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"61\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAABYCAYAAAAJKj6VAAAAAXNSR0IArs4c6QAABWNJREFUeF7tnFmodlMYx3+fISEukC9CcemCiCLfJ0NyoUiGC/MQmYsPGTKWMUNkyiwiQyTcSJQhRS4oQnFhKoSiUIT172w53znv2u96370f591n/Z96OxfvXv/9nv/za+81PGutwGEHAh1YEahtaTuAATMEoQ4YsFB7LW7AzECoAwYs1F6LGzAzEOqAAQu11+IGzAyEOmDAQu21uAFrZ2ADYFtg5bzPpsAvwI/N5yvgY+Av47TYAQO22JP1gX2BI5vPJgXgCLiXgOeBZ4A/C9pUcYkBWzvNhwKPACVQ5QD5FLgCeDL9/bsKilr+SQM2Z46AuhU4uUcg7gXOrP1pZsBgI+BtYKce4fpX6gXgMOCPAO1BSBoweAg4ITBb1ybALg3Un2np2gHTK/H+ggw9B7wOfN08jXYAdgT2bP6Ok9gPeG3cRcvx+5oB2xD4dkyH/ob0/c2pL/V9Jvny72jgrjE6H6QR5i41TmXUDNjhwNMtT42DAfWhSmIL4LHUlzuwJ72Sew7impoBexE4KJOls4A7J8zgVsAnLU8ywSpoq4paARMM32Qy/Qawz5Svs+OaebQcRBqx/lYTYbUCdgzwaCbRRwFPTAmB/PwiDRy2ybRfBbw1pfYgm9UK2CXANZmMbQb81CGbzwJaERgVRzRLSR3kh9W0VsA06jt9RKpeBfbvmMIrm6WiUTKa2de9q4laAct18O9LfbNTO2b/jJYBwnnNklTHWwynea2AfZiZINUi9dUd03c7cHZG49hmOqPjLYbTvFbAvsx0xE8pnNlvy/A7qXRn98wFmid7eTh4dP+ltQK2OaCZ/IWhIsJfO9i6PfB5S/vtUsWG4K4magUsIsHrNuuNqzPiWi7aOeLGs6xpwPrLzhrgpha5i4Hr+7vdMJQMWD95OhF4sEVKJdWafP25n9sNR8WAdcvVesCNwLljZDTndk+3Ww2ztQGbPm+7Apo309+2eBzQ0lSV9fkGbHLANk4L4Zen0eaFBU3fbRbOu4xMC24zu5cYsPLcyCvVkN3Sspg9X+2pVAGrebXq+l3zTTBgZYCpGvU2IDcFsVBF9WRac6zytWjAyqDSVVsCVwGnFTb5CNCIUrP5jmSen2CjMVinqba4boJNuOek4wXurn0f5EI7DdhiwLYGHk6FgQcUPoI0SrygpUK2UGZ5XmbA1s7rIU2la8nRARohqvzmzeWJRj//lQGb81EL3xodlvS1dJrO+c2OJJ+oM4ZDAwbqb6kGX6fpjAu9Cu8Afh93ob+fc8CAzRUYXjYGCM1paTFbTy/HBA7UDljb7iLZqEXq41OZjY4OcEzhQM2A6TSd91s805yWNsp+NoWvbtI4UDNgOolQRyuNiu+asyRym3MNUKEDtQKmvY8/ZDzSa3GP1OnXE8zR0YFaATspHe77QMY7TbC+0tFXN6/8FamzunT+xMLQtn5t73f05ECNTzCVLud29qhPpq3/jp4cqBEwnQ+hea1Rof5X5Ok3ev1qd1E1USNgFwGqkliK2DudfaHjoaqJGgHTmax9Hlc+CSwGbBK3Bnqtqh/2WqLfbsCWyPj/87aqkS8px4n4TQYswtUZ0tT2fh0ut1SA7Qa8N0N+hP+UGvtg4ab6Bv85YMBMQ6gDBizUXosbMDMQ6oABC7XX4gbMDIQ6YMBC7bW4ATMDoQ4YsFB7LW7AzECoAwYs1F6LGzAzEOqAAQu11+IGzAyEOmDAQu21uAEzA6EOGLBQey1uwMxAqAMGLNReixswMxDqgAELtdfiBswMhDpgwELttbgBMwOhDhiwUHstbsDMQKgDBizUXosbMDMQ6oABC7XX4gbMDIQ6YMBC7bW4ATMDoQ78A1Bnl1lbT4+nAAAAAElFTkSuQmCC\" y=\"91\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-3\"><g><ellipse cx=\"200\" cy=\"100\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 100px; margin-left: 181px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">3</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"181\" xlink:href=\"data:image/png;base64,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\" y=\"91\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-4\"><g><ellipse cx=\"20\" cy=\"180\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 180px; margin-left: 1px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">4</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"1\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAABYCAYAAAAJKj6VAAAAAXNSR0IArs4c6QAABDRJREFUeF7tnD+oXEUchb+IChIljViIQggWoiQoIig2QdBCCzGgIIggEWJloVZWWmilhVgkhASCNqJIEEWDoo1imiAoEfxbaWWpYKOiO7yr+N6buzv79s0+T/ab5sHe38w9nPPdufPm7t5d2HSgowO7Oo7t0DqAgAlBVwcErKu9Di5gMtDVAQHraq+DC5gMdHVAwLra6+ACJgNdHRCwrvY6uIAtxsBu4DHYtJ/4LvD9YkNfGL0FbLEcjwKPV4Yo0J1cbOgLo7eAbT3HQ8BbI90FbDBGwLYG2LXAV8AVAjbdQAGbH7CLgQ+Bg1O6OoM5g81P1tDjGeD5Gb0FTMC2BNhtwNmGngImYA2YrC/ZA5wHrmnoKWAC1oDJ+pLXJntbDzf2EjABa0RlrayAVQBrbQImYK2scB3wXXP1WqGACVgTMpcCnwK3VqpfAB4ZWZMJmIA1AVa2I8q2xMb2OXA78IOATffRjdZxf+4EPho5fD3wDfCjgAlY01S1oejK4VHQVZXOR4Djw+cCNsNdZ7DNBhVPTgP3Vbx7G7gf+EvA2q5bAdvsU5mhjlXs+3ny7Yn9QPn7T3MGcwZru9KGqhuH3fpap3uA9zccEDABawbsMuAccEOlxyvAE5XPBUzAmgF7eQSib4Gbgd8ErNnLfwtdg61ZcS9QvkdfazdNFvZfjBxzBnMGm3nVXQ18PfLt1Kcnn780ZQQBE7CpDlwEnAHuqlR9DNwN/ClgMy/S0YJVv0U+BbxYcefXYbH/0wxrncGcwUYduGX4r7FW8CDwZsN1K2ACVnXg8mHhvq9y9BTwaANcpUTABKzqwIkJHIcrR8otsWy2/iJgjQ4I2CYHHpisr94Y8eWOycL+szmsdQYTsHUO7AW+HNmSeHbyjonn5oDLW2SDWav2X2S5LZbbY62VR0G/N3j235Lybopaewd4r3KgPA14dc5zRJcL2PLjuwT4Y/mn3ZkzCtjyfRew5Xu+tDNOu0UuS4SALcvpHTiPgC3Z9FW7Rc77A9oecZS380x7vtnjnDs25qoBVh5ul1387WqfAAcqgz058obDsrivfa9su/T878ZZNcC2O4Dypp3yxp2NzR/eDo4I2GLICdgM/wRMwBZzQMC6+ucMJmAC1tUBAetqrzOYgAlYVwcErKu9zmACJmBdHRCwrvZ+MPKTt4eA17ueOWRw98FCgkqVKWCpyYXoFrCQoFJlClhqciG6BSwkqFSZApaaXIhuAQsJKlWmgKUmF6JbwEKCSpUpYKnJhegWsJCgUmUKWGpyIboFLCSoVJkClppciG4BCwkqVaaApSYXolvAQoJKlSlgqcmF6BawkKBSZQpYanIhugUsJKhUmQKWmlyIbgELCSpVpoClJheiW8BCgkqVKWCpyYXoFrCQoFJlClhqciG6BSwkqFSZApaaXIhuAQsJKlWmgKUmF6L7b6bpi1meLZFWAAAAAElFTkSuQmCC\" y=\"171\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-5\"><g><ellipse cx=\"140\" cy=\"180\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 180px; margin-left: 121px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">5</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"121\" xlink:href=\"data:image/png;base64,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\" y=\"171\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-6\"><g><ellipse cx=\"80\" cy=\"260\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 260px; margin-left: 61px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">6</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"61\" xlink:href=\"data:image/png;base64,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\" y=\"251\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-7\"><g><ellipse cx=\"200\" cy=\"260\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\"></ellipse></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 260px; margin-left: 181px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 16px;\">7</font></div></div></div></foreignobject><image height=\"22\" width=\"38\" x=\"181\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAABYCAYAAAAJKj6VAAAAAXNSR0IArs4c6QAABI1JREFUeF7tnUvIdVMYx3+fKJdcMjAwcIkUxYBCiYmUIbmPSCiEXMqAomRCoVxyycRIbjOZCUmJFFGUgWLCRCgixVmcr9fr3Wuf/T/n7P1971m/PX6eZ3V+z6911rvW2ufdg48ERiSwZ8TalpYACqYEoxJQsFHxWlzBdGBUAgo2Kl6LK5gOjEpAwUbFa3EF04FRCSjYqHgtrmA6MCqBFgW7GjhnVKr14r8B9wF/7aPxJx+2RcFeAy6bnPTWgAcBf+7D8ScdWsEmxf3PYAo2PfNJR3QGmxC3M9iEsOdDOYNNz3zSEZ3BJsTd4gx2PXD+iIyv66l9L/DIiGPvd6VbFGzMJpwAfAYc3jHIM8CtYw6+P9ZWsPV15RDgfeDMjpJvApe0tD2xl4GCrU+w54EbO8p9B5wB/Li+oXZPJQVbT6/Kuu7FSqnzgA/WM8zuq6Jgq/fsLODjSpn7ZxurD68+xO6toGCr9e5g4FPglI4y7wAXtbju+i8LBVtNsAdm6Q9WShwHfLta+d2frWDL9/A04ItK+m3AU8uX3pxMBVuulwcA7wFlAf//55P5daBmbkz0IVSw5QS7CXiukloW/UUyH/DN7iUsOBb4srJb/xhw9xI1NzbFGSxv7SuztdcVHWk/ACfPBPslL7m5GQqW9bYckpe1V9dzM/BsVm7zoxUs63E5a+xa2JfjoDJ7/Z6V2/xoBRve44tnfx2+VQm/oeeoaPgIGxipYMOaWrYlPqrclCiz10nAH8NKtRWlYMP6fensRsQbldBrgZeGlWkvSsEW9/zA+Y5913ljmb1ObP28sQ+hgi0W7HLg1UrYncATi0u0G6Fgi3tftiVqd/iPbvUi4WJs/0YoWD+pchO1XMfpepq8Yz9UrL1xCtZP7GnglkrI6cDnKfDW4hWs3vGjer7+3gYubE2WZT6vgtWplVfMane6rgFeXgZ4azkKVu/4V5Wr0CXjSODn1mRZ5vMqWDe1vsV92bK4chnYLeYoWHfXy9tAD1WEKL8tVtvVb9Gh3s+sYN14ytZEmcW6nsOAXzVpGAEF28mpHFx/XcH3+mxrouzs+wwkoGA7Qd3Rc/xT7uK/MJCtYe7kdzpQu1RYgk+d38dXnoEEnMG2gzoC+KnCrty1L9sTzfxC9ECHXOQHoC4A3q3El5c9rgpqGepX5A4H7gEerZhxO/Ck1mQE/Irczqvv91vPBT7M8BqtYNsd+B44pqLFoUD5Tx0+AQEF24J1PPBNhV154ePsgKuhcwIKtqVC3w/JPT473L5La3ICCpYzMyMgoGABLENzAgqWMzMjIKBgASxDcwIKljMzIyCgYAEsQ3MCCpYzMyMgoGABLENzAgqWMzMjIKBgASxDcwIKljMzIyCgYAEsQ3MCCpYzMyMgoGABLENzAgqWMzMjIKBgASxDcwIKljMzIyCgYAEsQ3MCCpYzMyMgoGABLENzAgqWMzMjIKBgASxDcwIKljMzIyCgYAEsQ3MCCpYzMyMgoGABLENzAgqWMzMjIKBgASxDcwIKljMzIyCgYAEsQ3MCCpYzMyMgoGABLENzAn8DaLtkWRCVZRcAAAAASUVORK5CYII=\" y=\"251\"/></switch></g></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-8\"><g><path d=\"M80 80l45.86-45.86\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\"></path></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-9\"><g><path d=\"M2e2 80 154.14 34.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\"></path></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-10\"><g><path d=\"M20 160l45.86-45.86\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\"></path></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-11\"><g><path d=\"M140 160 94.14 114.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\"></path></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-12\"><g><path d=\"M80 240l45.86-45.86\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\"></path></g></g><g data-cell-id=\"8a4ovbRtIK3ML8qCdcJa-13\"><g><path d=\"M2e2 240l-45.86-45.86\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\"></path></g></g></g></g></g></svg></div></div>\n\n\n\n</div>",
+  "选项": [
+   "A. LRN",
+   "B. NRL",
+   "C. RLN",
+   "D. RNL"
+  ],
+  "答案": "D",
+  "解析": "分析遍历后的结点序列，可以看出根结点是在中间访问，而右子树结点在左子树之前，即遍历的方式是 RNL。本题考查的遍历方法并不是二叉树的 3 种基本 遍历方式，对于考生而言，重要的是要掌握遍历的思想。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "树与二叉树"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 4,
+  "内容": "<div class=\"content\"><p>下列二叉排序树中，满足平衡二叉树定义的是（ ）。</p>\n<div class=\"svg-wrapper\"><div class=\"svg-container\" style=\"height:auto\"><!DOCTYPE html>\n\n<svg content='&lt;mxfile host=\"Electron\" agent=\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36\" version=\"24.7.17\" scale=\"1\" border=\"0\"&gt;\n &lt;diagram name=\"Page-1\" id=\"BAe4-gwqQFhU16PJJb3C\"&gt;\n &lt;mxGraphModel dx=\"2220\" dy=\"994\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\" pageScale=\"1\" pageWidth=\"827\" pageHeight=\"1169\" math=\"0\" shadow=\"0\"&gt;\n &lt;root&gt;\n &lt;mxCell id=\"0\" /&gt;\n &lt;mxCell id=\"1\" parent=\"0\" /&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-2\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"600\" y=\"200\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-3\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"540\" y=\"260\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-4\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"660\" y=\"260\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-5\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"480\" y=\"320\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-6\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"600\" y=\"320\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-7\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"540\" y=\"380\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-8\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"600\" y=\"440\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-9\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-3\" target=\"YV778An97EZ2fiTgJMUi-2\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"470\" y=\"300\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"520\" y=\"250\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-10\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-4\" target=\"YV778An97EZ2fiTgJMUi-2\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"570\" y=\"250\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"616\" y=\"204\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-11\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-5\" target=\"YV778An97EZ2fiTgJMUi-3\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"690\" y=\"250\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"644\" y=\"204\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-12\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-6\" target=\"YV778An97EZ2fiTgJMUi-3\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"510\" y=\"330\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"556\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-13\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-7\" target=\"YV778An97EZ2fiTgJMUi-5\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"630\" y=\"330\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"584\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-14\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-8\" target=\"YV778An97EZ2fiTgJMUi-7\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"570\" y=\"410\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"616\" y=\"364\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-15\" value=\"&amp;lt;font style=&amp;quot;font-size: 30px;&amp;quot;&amp;gt;D&amp;lt;/font&amp;gt;\" style=\"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;fontSize=30;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"600\" y=\"500\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-29\" value=\"&amp;lt;font style=&amp;quot;font-size: 30px;&amp;quot;&amp;gt;C&amp;lt;/font&amp;gt;\" style=\"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;fontSize=30;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"240\" y=\"500\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-30\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"240\" y=\"240\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-32\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"300\" y=\"300\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-33\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"360\" y=\"360\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-34\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-32\" target=\"YV778An97EZ2fiTgJMUi-30\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"390\" y=\"250\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"344\" y=\"204\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-35\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-33\" target=\"YV778An97EZ2fiTgJMUi-32\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"330\" y=\"330\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"376\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-36\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"180\" y=\"300\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-37\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"300\" y=\"420\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-38\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-36\" target=\"YV778An97EZ2fiTgJMUi-30\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"316\" y=\"316\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"284\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-39\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-37\" target=\"YV778An97EZ2fiTgJMUi-33\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"224\" y=\"316\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"256\" y=\"284\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-40\" value=\"&amp;lt;font style=&amp;quot;font-size: 30px;&amp;quot;&amp;gt;B&amp;lt;/font&amp;gt;\" style=\"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;fontSize=30;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-70\" y=\"500\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-41\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-60\" y=\"250\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-42\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry y=\"340\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-44\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-42\" target=\"YV778An97EZ2fiTgJMUi-41\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"90\" y=\"310\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"44\" y=\"264\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-46\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-120\" y=\"340\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-47\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-180\" y=\"420\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-48\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-46\" target=\"YV778An97EZ2fiTgJMUi-41\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"16\" y=\"376\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"-16\" y=\"344\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-49\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-47\" target=\"YV778An97EZ2fiTgJMUi-46\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"-256\" y=\"316\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"-114.14213562373106\" y=\"394.14213562373084\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-50\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-60\" y=\"420\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-51\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-50\" target=\"YV778An97EZ2fiTgJMUi-42\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"-136\" y=\"316\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"5.857864376268935\" y=\"394.14213562373084\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-63\" value=\"&amp;lt;font style=&amp;quot;font-size: 30px;&amp;quot;&amp;gt;A&amp;lt;/font&amp;gt;\" style=\"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;fontSize=30;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-360\" y=\"500\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-64\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-360\" y=\"260\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-65\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-420\" y=\"340\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-66\" value=\"\" style=\"endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;entryX=0;entryY=1;entryDx=0;entryDy=0;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-65\" target=\"YV778An97EZ2fiTgJMUi-64\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"-200\" y=\"310\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"-316\" y=\"334\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-71\" value=\"\" style=\"ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeWidth=2;\" vertex=\"1\" parent=\"1\"&gt;\n &lt;mxGeometry x=\"-360\" y=\"420\" width=\"40\" height=\"40\" as=\"geometry\" /&gt;\n &lt;/mxCell&gt;\n &lt;mxCell id=\"YV778An97EZ2fiTgJMUi-72\" value=\"\" style=\"endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;\" edge=\"1\" parent=\"1\" source=\"YV778An97EZ2fiTgJMUi-71\" target=\"YV778An97EZ2fiTgJMUi-65\"&gt;\n &lt;mxGeometry width=\"50\" height=\"50\" relative=\"1\" as=\"geometry\"&gt;\n &lt;mxPoint x=\"-426\" y=\"316\" as=\"sourcePoint\" /&gt;\n &lt;mxPoint x=\"-284.14213562373106\" y=\"394.14213562373084\" as=\"targetPoint\" /&gt;\n &lt;/mxGeometry&gt;\n &lt;/mxCell&gt;\n &lt;/root&gt;\n &lt;/mxGraphModel&gt;\n &lt;/diagram&gt;\n&lt;/mxfile&gt;' height=\"341\" viewbox=\"-.5 -.5 1122 341\" width=\"1122\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<defs>\n<pattern height=\"300\" id=\"watermark-pattern\" patterntransform=\"rotate(0)\" patternunits=\"userSpaceOnUse\" width=\"300\" x=\"0\" y=\"0\">\n<text fill=\"rgba(0,0,0,0.05)\" font-family=\"Arial, sans-serif\" font-size=\"24\" font-weight=\"bold\" x=\"0\" y=\"150\">408真题系统</text>\n</pattern>\n</defs>\n<rect fill=\"url(#watermark-pattern)\" fill-opacity=\"1\" height=\"100%\" pointer-events=\"none\" shape-rendering=\"crispEdges\" stroke=\"none\" width=\"100%\" x=\"0\" y=\"0\"></rect><defs></defs><g><g data-cell-id=\"0\"><g data-cell-id=\"1\"><g data-cell-id=\"YV778An97EZ2fiTgJMUi-2\"><g><ellipse cx=\"1041\" cy=\"21\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-3\"><g><ellipse cx=\"981\" cy=\"81\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-4\"><g><ellipse cx=\"1101\" cy=\"81\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-5\"><g><ellipse cx=\"921\" cy=\"141\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-6\"><g><ellipse cx=\"1041\" cy=\"141\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-7\"><g><ellipse cx=\"981\" cy=\"201\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-8\"><g><ellipse cx=\"1041\" cy=\"261\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-9\"><g><path d=\"M995.14 66.86 1026.86 35.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-10\"><g><path d=\"M1086.86 66.86 1055.14 35.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-11\"><g><path d=\"M935.14 126.86l31.72-31.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-12\"><g><path d=\"M1026.86 126.86 995.14 95.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-13\"><g><path d=\"M966.86 186.86l-31.72-31.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-14\"><g><path d=\"M1026.86 246.86 995.14 215.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-15\"><g><rect fill=\"none\" height=\"40\" pointer-events=\"all\" stroke=\"none\" width=\"40\" x=\"1021\" y=\"301\"></rect></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 321px; margin-left: 1022px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 30px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 30px;\">D</font></div></div></div></foreignobject><image height=\"43.5\" width=\"38\" x=\"1022\" xlink:href=\"data:image/png;base64,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\" y=\"303.5\"/></switch></g></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-29\"><g><rect fill=\"none\" height=\"40\" pointer-events=\"all\" stroke=\"none\" width=\"40\" x=\"661\" y=\"301\"></rect></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 321px; margin-left: 662px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 30px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 30px;\">C</font></div></div></div></foreignobject><image height=\"43.5\" width=\"38\" x=\"662\" xlink:href=\"data:image/png;base64,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\" y=\"303.5\"/></switch></g></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-30\"><g><ellipse cx=\"681\" cy=\"61\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-32\"><g><ellipse cx=\"741\" cy=\"121\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-33\"><g><ellipse cx=\"801\" cy=\"181\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-34\"><g><path d=\"M726.86 106.86 695.14 75.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-35\"><g><path d=\"M786.86 166.86l-31.72-31.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-36\"><g><ellipse cx=\"621\" cy=\"121\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-37\"><g><ellipse cx=\"741\" cy=\"241\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-38\"><g><path d=\"M635.14 106.86l31.72-31.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-39\"><g><path d=\"M755.14 226.86l31.72-31.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-40\"><g><rect fill=\"none\" height=\"40\" pointer-events=\"all\" stroke=\"none\" width=\"40\" x=\"351\" y=\"301\"></rect></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 321px; margin-left: 352px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 30px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 30px;\">B</font></div></div></div></foreignobject><image height=\"43.5\" width=\"38\" x=\"352\" xlink:href=\"data:image/png;base64,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\" y=\"303.5\"/></switch></g></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-41\"><g><ellipse cx=\"381\" cy=\"71\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-42\"><g><ellipse cx=\"441\" cy=\"161\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-44\"><g><path d=\"M441 141 395.14 85.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-46\"><g><ellipse cx=\"321\" cy=\"161\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-47\"><g><ellipse cx=\"261\" cy=\"241\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-48\"><g><path d=\"M321 141l45.86-55.86\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-49\"><g><path d=\"M275.14 226.86l31.72-51.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-50\"><g><ellipse cx=\"381\" cy=\"241\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-51\"><g><path d=\"M395.14 226.86l31.72-51.72\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-63\"><g><rect fill=\"none\" height=\"40\" pointer-events=\"all\" stroke=\"none\" width=\"40\" x=\"61\" y=\"301\"></rect></g><g><g transform=\"translate(-0.5 -0.5)\"><switch><foreignobject height=\"100%\" pointer-events=\"none\" requiredfeatures=\"http://www.w3.org/TR/SVG11/feature#Extensibility\" style=\"overflow:visible;text-align:left\" width=\"100%\"><div style=\"display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 321px; margin-left: 62px;\" xmlns=\"http://www.w3.org/1999/xhtml\"><div data-drawio-colors=\"color: rgb(0, 0, 0); \" style=\"box-sizing: border-box; font-size: 0px; text-align: center;\"><div style=\"display: inline-block; font-size: 30px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;\"><font style=\"font-size: 30px;\">A</font></div></div></div></foreignobject><image height=\"43.5\" width=\"38\" x=\"62\" xlink:href=\"data:image/png;base64,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\" y=\"303.5\"/></switch></g></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-64\"><g><ellipse cx=\"81\" cy=\"81\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-65\"><g><ellipse cx=\"21\" cy=\"161\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-66\"><g><path d=\"M35.14 146.86 66.86 95.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-71\"><g><ellipse cx=\"81\" cy=\"241\" fill=\"none\" pointer-events=\"all\" rx=\"20\" ry=\"20\" stroke=\"rgb(0, 0, 0)\" stroke-width=\"2\"></ellipse></g></g><g data-cell-id=\"YV778An97EZ2fiTgJMUi-72\"><g><path d=\"M66.86 226.86 35.14 175.14\" fill=\"none\" pointer-events=\"stroke\" stroke=\"rgb(0, 0, 0)\" stroke-miterlimit=\"10\" stroke-width=\"2\"></path></g></g></g></g></g></svg></div></div></div>",
+  "选项": [],
+  "答案": "B",
+  "解析": "根据 AVL 的定义有，任意结点的左、右子树高度差的绝对值不超过 1。而其余 3 个 选项均可以找到不符合该条件的结点。在做题过程中，如果答案不太明显，可以把每个非叶结点的平衡因子都写出来再进行判断。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "图"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 5,
+  "内容": "<div class=\"content\"><p>已知一棵完全二叉树的第 6 层（设根为第 1 层）有 8 个叶结点，则该完全二叉树的结点个数最多是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 39",
+   "B. 52",
+   "C. 111",
+   "D. 119"
+  ],
+  "答案": "C",
+  "解析": "完全二叉树 比满二叉树只是在最下面一层的右边缺少了部分叶结点，而最后一层之上是个\n满二叉树，并且只有最后两层有叶结点。第 6 层有叶结点则完全二叉树的高度可能为 6 或 7，显然树高为 7 时结点更多。若第 6 层上有 8 个叶结点，则前六层为满二叉树，而第 7 层缺失了 8×2=16 个叶结点，故完全二叉树的结点个数最多为\n(\n2\n7\n−\n1\n)\n−\n16\n=\n111\n个结点。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "查找"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 6,
+  "内容": "<div class=\"content\"><p>将森林转换为对应的二叉树，若在二叉树中，结点 u 是结点 v 的父结点的父结点，则在原来的森林中，u 和 v 可能具有的关系是（ ）。</p>\n<p>I. 父子关系</p>\n<p>II. 兄弟关系</p>\n<p>III. u 的父结点与 v 的父结点是兄弟关系</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 只有 II",
+   "B. I 和 II",
+   "C. I 和 III",
+   "D. I、II 和 III"
+  ],
+  "答案": "B",
+  "解析": "森林与二叉树的 转换规则 为“左孩子右兄弟”。在最后生成的二叉树中，父子关系在对应森林关系中可能是兄弟关系或原本就是父子关系。\n情形 I：若结点 V 是结点 u 的第二个孩子结点，在转换时，结点 V 就变成结点 u 第一个孩子的右孩子，符合要求。\n情形 II：结点 u 和 V 是兄弟结点的关系，但二者之中还有一个兄弟结点 k, 则转换后，结点 V 就变为结点 k 的右孩子，而结点 k 则是结点 u 的右孩子，符合要求。\nu\nv\nu\nv\nu\nv\nu\nv\nII\nI\n情形 III: 若结点 u 的父结点与 v 的父结点是兄弟关系，则转换后，结点 u 和 v 分别在两者最左父结点的两棵子树中，不可能出现在同 一条路径中。\nIII\n1\n2\n3\nu\nv\n5\n7\n1\n2\nu\n3\n5\nv\n7\n【逆向法】由题意可知 u 是 v 的父结点的父结点，如下图所示有 4 种情况：\nu\nv\nu\nv\nu\nv\nu\nv\n(1)\n(2)\n(3)\n(4)\n根据树与二叉树的转换规则，将这 4 种情况转换成树种结点的关系。(1) 在原来的树中 u 是 v 的父结点的父结点； (2) 在树中 u 是 v 的父结点； (3) 在树中 u 是 v 的父结点的兄弟； (4) 在树中 u 与 v 是兄弟关系。由此可知 I 和 II 正确。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "排序"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 7,
+  "内容": "<div class=\"content\"><p>下列关于无向连通图特性的叙述中，正确的是（）。</p>\n<p>I. 所有顶点的度之和为偶数</p>\n<p>II. 边数大于顶点个数减 1</p>\n<p>III. 至少有一个顶点的度为 1</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 只有 I",
+   "B. 只有 II",
+   "C. I 和 II",
+   "D. I 和 III"
+  ],
+  "答案": "A",
+  "解析": "每条边都连接了两个结点，在计算顶点的度之和时每条边都被计算了两次（出度和入度），故所有顶点的度之和为边数的两倍，I 正确。n 个顶点、n-1 条边可以构成无向连通图，比如树，II 错误。顶点数为 N (N≥1) 的无向完全图中不存在度为 1 的顶点，III 错误。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "算法"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 8,
+  "内容": "<div class=\"content\"><p>下列叙述中，不符合 m 阶 B 树定义要求的是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 根节点最多有 m 棵子树",
+   "B. 所有叶结点都在同一层上",
+   "C. 各结点内关键字均升序或降序排列",
+   "D. 叶结点之间通过指针链接"
+  ],
+  "答案": "D",
+  "解析": "选项 A、B 和 C 都是 B-树的特点，而选项 D 则是 B+ 树的特点。注意区别 B-树和 B+ 树各\n自的特点。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "数组"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 9,
+  "内容": "<div class=\"content\"><p>已知关键字序列 5，8，12，19，28，20，15，22 是小根堆（最小堆），插入关键字 3，调整后得到的小根堆是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 3，5，12，8，28，20，15，22，19",
+   "B. 3，5，12，19，20，15，22，8，28",
+   "C. 3，8，12，5，20，15，22，28，19",
+   "D. 3，12，5，8，28，20，15，22，19"
+  ],
+  "答案": "A",
+  "解析": "根据关键字序列得到的 小根堆 的二叉树形式如下图所示。\n5\n8\n12\n19\n28\n20\n15\n22\n5\n8\n12\n19\n28\n20\n15\n22\n3\n3\n5\n12\n8\n28\n20\n15\n22\n19\n(1)\n(2)\n(3)\n插入关键字 3 时，先将其放在小顶堆的末端，如图 (2) 所示。再将该关键字向上进行调整，得到的结果如图 (3) 所示。所以，调整后的小顶堆序列为 3, 5, 12, 8, 28, 20, 15, 22, 19。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "串"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 10,
+  "内容": "<div class=\"content\"><p>若数据元素序列 11，12，13，7，8，9，23，4，5 是采用下列排序方法之一得到的第二趟排序后的结果，则该排序算法只能是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 起泡排序",
+   "B. 插入排序",
+   "C. 选择排序",
+   "D. 二路归并排序"
+  ],
+  "答案": "B",
+  "解析": "本题考查各种 内部排序 算法的特点。对于冒泡排序和选择排序，每一趟都能确定一个元素的最终位置，而题目中，前 2 个元素和后 2 个元素均不是最小或最大的 2 个元素并按序排列。选项 D 中的 2 路归并排序，第一趟排序结束都可以得到若干个有序子序列，而此时的序列中并没有两两元素有序排列。插入排序在每趟排序后能确定前面的若干元素是有序的，而此时第二趟排序后，序列的前三个元素是有序的，符合其特征。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "广义表"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 11,
+  "内容": "<div class=\"content\"><p>冯•诺依曼计算机中指令和数据均以二进制形式存放在存储器中，CPU 区分它们的依据是（ ）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 指令操作码的译码结果",
+   "B. 指令和数据的寻址方式",
+   "C. 指令周期的不同阶段",
+   "D. 指令和数据所在的存储单元"
+  ],
+  "答案": "C",
+  "解析": "虽然在 冯诺依曼结构 中指令和数据都是以二进制形式存放在存储器中，但 CPU 可以根据指令周期的不同阶段来区分是指令还是数据，通常在取指阶段取出的是指令，在执行阶段取出的是数据。本题容易误选 A，需要清楚的是，CPU 只有在确定取出的是指令之后，才会将其操作码送去译码，因此，不可能依据译码的结果来区分指令和数据。",
+  "科目": "数据结构",
+  "章节": [],
+  "标签": [
+   "线性表"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 12,
+  "内容": "<div class=\"content\"><p>一个 C 语言程序在一台 32 位机器上运行。程序中定义了三个变量 x，y 和 z，其中 x 和 z 是 int 型，y 为 short 型。当 x=127，y=-9 时，执行赋值语句 z=x+y 后，x、y 和 z 的值分别是：</p>\n\n\n\n</div>",
+  "选项": [
+   "A. x=0000007FH , y=FFF9H , z=00000076H",
+   "B. x=0000007FH , y=FFF9H , z=FFFF0076H",
+   "C. x=0000007FH , y=FFF7H , z=FFFF0076H",
+   "D. x=0000007FH , y=FFF7H , z=00000076H"
+  ],
+  "答案": "D",
+  "解析": "C 语言中的整型数据为 补码表示，int 为 32 位，short 为 16 位，故 x、y 转换成十六进制为 0000007FH、FFF7H。执行 z=x+y 时，由于 x 是 int 型，y 为 short 型，需将短字长数据转换成长字长数据，称之为“符号扩展”。由于 y 的符号位为 1，故在 y 的前面添加 16 个 1，即可将 y 上升为 it 型，其十六进制形式为 FFFFFFF7H。最后执行加法，即 O0OO007FH+FFFFFFF7H=00000076H，其中最高位的进位 1 自然丢弃。故选 D。\n【排除法】对于 x 的值，4 个选项都一样，无须计算；z=x+y=127-9=118>0，前 4 个字节必然全 0，排除 BC；只需算出 y=-9 的值即可，其十六进制形式为 FFF7H，排除 A。\n【提示】解题时，应先排除明显错误的选项，然后再推敲剩下的选项。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "数据表示"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 13,
+  "内容": "<div class=\"content\"><p>浮点数加、减运算过程一般包括对阶、尾数运算、规格化、舍入和判溢出等步骤。设浮点数的阶码和尾数均采用补码表示，且位数分别为 5 位和 7 位（均含 2 位符号位）。若有两个数 X=2⁷×29/32，Y=2⁵×5/8，则用浮点加法计算 X+Y 的最终结果是（ ）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 00111 1100010",
+   "B. 00111 0100010",
+   "C. 01000 0010001",
+   "D. 发生溢出"
+  ],
+  "答案": "D",
+  "解析": "本题考查 浮点数加减。X 的浮点数格式为 00,111;00,11101（分号前为阶码，分号后为尾数），Y 的浮点数格式为 00,101;00,10100。然后根据浮点数的加法步骤进行运算。\n第一步：对阶。X、Y 阶码相减，即 00,111-00,101 = 00,111+11,0111 = 00,010，可知 X 的阶码比 Y 的阶码大 2（这一步可直接目测）。根据小阶向大阶看齐的原则，将 Y 的阶码加 2，尾数右移 2 位，将 Y 变为 00,111；00,00101。\n第二步：尾数相加。即 00,11101+00,00101 = 01,00010，尾数相加结果符号位为 01，故需右规。\n第三步：规格化。将尾数右移 1 位，阶码加 1，得 X+Y 为 01,000;00,10001。\n第四步：判溢出。阶码符号位为 01，说明发生溢出。\n本题容易误选选项 B、C, 这是因为选项 B、C 本身并没有计算错误，只是它们不是最终结果，选项 B 少了第 3 步和第 4 步，选项 C 少了第 4 步。\n【偷懒法】本题也可以直接用数学知识对原数进行计算，然后将计算的结果转换成浮点数的格式。X+Y =\n29/32\n×\n2\n7\n+\n5/8\n×\n2\n5\n=\n29/32\n×\n2\n7\n+\n5/32\n×\n2\n7\n=\n(\n29/32\n+\n5/32\n)\n×\n2\n7\n=\n34/32\n×\n2\n7\n=\n17/32\n×\n2\n8\n，阶码用补码表示，数值位 3 位，最大只能表示 7，即 X+Y 的结果的阶码 8 超出了该浮点数的表示范围，故溢出。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "存储系统"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 14,
+  "内容": "<div class=\"content\"><p>某计算机的 Cache 共有 16 块，采用 2 路组相联映射方式（即每组 2 块）。每个主存块大小为 32 字节，按字节编址。主存 129 号单元所在主存块应装入到的 Cache 组号是（ ）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 0",
+   "B. 1",
+   "C. 4",
+   "D. 6"
+  ],
+  "答案": "C",
+  "解析": "由于 Cache 共有 16 块，采用 2 路组相联，因此共分为 8 组，组号为 0,1,2，…，7。主存的\n某一字块按模 8 映射到 Cache 某组的任一字块中，即主存的第 0,8，l6,…字块可以映射到 Cache\n第 0 组的任一字块中。每个主存块大小为 32 字节，故 129 号单元位于第 4 块主存块（注意是从\n0 开始），因此将映射到 Cache 第 4 组的任一字块中。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "指令系统"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 15,
+  "内容": "<div class=\"content\"><p>某计算机主存容量为 64KB，其中 ROM 区为 4KB，其余为 RAM 区，按字节编址。现要用 2K×8 位的 ROM 芯片和 4K×4 位的 RAM 芯片来设计该存储器，则需要上述规格的 ROM 芯片数和 RAM 芯片数分别是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 1、15",
+   "B. 2、15",
+   "C. 1、30",
+   "D. 2、30"
+  ],
+  "答案": "D",
+  "解析": "本题考查 主存容量的扩展。首先确定 ROM 的个数，ROM 区为 4KB, 选用 2K×8 位的 ROM 芯片，需要 4Kx8 / 2K×8 =2 片，采用字扩展方式：RAM 区为 60KB, 选用 4Kx4 位的 RAM 芯片，需要 60K×8 /4K×4 = 30 片，采用字和位同时扩展方式。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "CPU"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 16,
+  "内容": "<div class=\"content\"><p>某机器字长 16 位，主存按字节编址，转移指令采用相对寻址，由两个字节组成，第一字节为操作码字段，第二字节为相对位移量字段。假定取指令时，每取一个字节 PC 自动加 1。若某转移指令所在主存地址为 2000H，相对位移量字段的内容为 06H，则该转移指令成功转移后的目标地址是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 2006H",
+   "B. 2007H",
+   "C. 2008H",
+   "D. 2009H"
+  ],
+  "答案": "C",
+  "解析": "相对寻址 EA = (PC)+A，首先要求的是取指令后 PC 的值。转移指令由两个字节组成，每取一个字节 PC 值自动加 1，因此取指令后 PC 值为 2000H+2H = 2002H, 故 EA = (PC)+A = 2002H+06H = 2008H。\n【易错点】本题易误选 A 或 B。选项 A 没有考虑 PC 值的自动更新，选项 B 虽然考虑了 PC 值要自动更新，但没有注意到该转移指令是一条两字节指令，PC 值仅仅“+1”而不是“+2”。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "总线"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 17,
+  "内容": "<div class=\"content\"><p>下列关于 RISC 的叙述中，错误的是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. RISC 普遍采用微程序控制器",
+   "B. RISC 大多数指令在一个时钟周期内完成",
+   "C. RISC 的内部通用寄存器数量相对 CISC 多",
+   "D. RISC 的指令数、寻址方式和指令格式种类相对 CISC 少"
+  ],
+  "答案": "A",
+  "解析": "相对于 CISC，RISC 的特点是指令条数少；指令长度固定，指令格式和寻址种类少：只有取数/存数指令访问存储器，其余指令的操作均在寄存器之间进行；CPU 中通用寄存器多；大部分指令在一个或者小于一个机器周期内完成；以硬布线逻辑为主，不用或者少用微程序控制。选项 B、C、D 都是 RISC 的特点，选项 A 是错误的，因为 RISC 的速度快，所以普遍采用硬布线控制器，而非微程序控制器。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "I/O"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 18,
+  "内容": "<div class=\"content\"><p>某计算机的指令流水线由四个功能段组成，指令流经各功能段的时间（忽略各功能段之间的缓存时间）分别为 90 ns、80 ns、70 ns、和 60 ns，则该计算机的 CPU 时钟周期至少是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 90 ns",
+   "B. 80 ns",
+   "C. 70 ns",
+   "D. 60 ns"
+  ],
+  "答案": "A",
+  "解析": "流水线的时钟周期应以最长的执行时间为准，否则用时长的流水段的功能将不能正确完成。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "数据表示"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 19,
+  "内容": "<div class=\"content\"><p>相对于微程序控制器，硬布线控制器的特点是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 指令执行速度慢，指令功能的修改和扩展容易",
+   "B. 指令执行速度慢，指令功能的修改和扩展难",
+   "C. 指令执行速度快，指令功能的修改和扩展容易",
+   "D. 指令执行速度快，指令功能的修改和扩展难"
+  ],
+  "答案": "D",
+  "解析": "微程序控制器 采用了“存储程序”的原理，每条机器指令对应一个微程序，因此修改和扩充容易，灵活性好，但每条指令的执行都要访问控制存储器，所以速度慢。硬布线控制器 采用专门的逻辑电路实现，其速度主要取决于逻辑电路的延迟，因此速度快，但修改和扩展困难，灵活性差。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "存储系统"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 20,
+  "内容": "<div class=\"content\"><p>假设某系统总线在一个总线周期中并行传输 4 字节信息，一个总线周期占用 2 个时钟周期，总线时钟频率为 10MHz，则总线带宽是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 10MB/S",
+   "B. 20MB/S",
+   "C. 40MB/S",
+   "D. 80MB/S"
+  ],
+  "答案": "B",
+  "解析": "总线带宽是指单位时间内总线上传输数据的位数，通常用每秒钟传送信息的字节数来衡量，单位 Bs。由题意可知，在 1 个总线周期（=2 个时钟周期）内传输了 4 字节信息，时钟周期=1/10MHz=0.1μs，故总线带宽为 4B/(2×0.1μs)=4B/(0.2×10⁻⁶s)=20MB/s。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "指令系统"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 21,
+  "内容": "<div class=\"content\"><p>假设某计算机的存储系统由 Cache 和主存组成，某程序执行过程中访存 1000 次，其中访问 Cache 缺失（未命中）50 次，则 Cache 的命中率是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 5%",
+   "B. 9.5%",
+   "C. 50%",
+   "D. 95%"
+  ],
+  "答案": "D",
+  "解析": "命中率 = Cache 命中次数/总访问次数。需要注意的是看清题，题中说明的是缺失 50 次，而不是命中 50 次，仔细审题是做对题的第一步。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "CPU"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 22,
+  "内容": "<div class=\"content\"><p>下列选项中，能引起外部中断的事件是（）。 </p>\n\n\n\n</div>",
+  "选项": [
+   "A. 键盘输入",
+   "B. 除数为 0",
+   "C. 浮点运算下溢",
+   "D. 访存缺页"
+  ],
+  "答案": "A",
+  "解析": "外部中断 指的是 CPU 执行指令以外的事件产生的中断，通常是指来自 CPU 与内存以外的中断。A 中键盘输入属于外部事件，每次键盘输入 CPU 都需要执行中断以读入输入数据，所以能引起外部中断。B 中除数为 0 属于异常，也就是内中断，发生在 CPU 内部。C 中浮点运算下溢将按机器零处理，不会产生中断。而 D 访存缺页属于 CPU 执行指令时产生的中断，也不属于外部中断。所以能产生外部中断的只能是输入设备键盘。",
+  "科目": "计算机组成原理",
+  "章节": [],
+  "标签": [
+   "总线"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 23,
+  "内容": "<div class=\"content\"><p>单处理机系统中，可并行的是（）。</p>\n<p>Ⅰ. 进程与进程  Ⅱ. 处理机与设备  Ⅲ. 处理机与通道  Ⅳ. 设备与设备</p>\n\n\n\n</div>",
+  "选项": [
+   "A. Ⅰ、Ⅱ、Ⅲ",
+   "B. Ⅰ、Ⅱ、Ⅳ",
+   "C. Ⅰ、Ⅲ、Ⅳ",
+   "D. Ⅱ、Ⅲ、Ⅳ"
+  ],
+  "答案": "D",
+  "解析": "在单处理机系统（不包含多核的情况）中，同一时刻只能有一个进程占用处理机，因此进程之间不能并行执行。通道是独立于 CPU 的控制输入／输出的设备，两者可以并行，显然，设备与设备之间也是可以并行的。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "进程管理"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 24,
+  "内容": "<div class=\"content\"><p>下列进程调度算法中，综合考虑进程等待时间和执行时间的是（）。 </p>\n\n\n\n</div>",
+  "选项": [
+   "A. 时间片轮转调度算法",
+   "B. 短进程优先调度算法",
+   "C. 先来先服务调度算法",
+   "D. 高响应比优先调度算法"
+  ],
+  "答案": "D",
+  "解析": "在 最高响应比优先算法 中，选出响应比最高的进程投入执行，响应比 R 定义如下：响应比 R = (等待时间＋执行时间) / 执行时间。它综合考虑了每个进程的等待时间和执行时间，对于同时到达的长进程和短进程，短进程会优先执行，以提高系统吞吐量；而长进程的响应比可以随等待时间的增加而提高，不会产生进程无法调度的情况。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "内存管理"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 25,
+  "内容": "<div class=\"content\"><p>某计算机系统中有 8 台打印机，由 K 个进程竞争使用，每个进程最多需要 3 台打印机。该系统可能会发生死锁的 K 的最小值是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 2",
+   "B. 3",
+   "C. 4",
+   "D. 5"
+  ],
+  "答案": "C",
+  "解析": "这种题用到组合数学中鸽巢原理的思想。考虑最极端情况，因为每个进程最多需要 3 台打印机，如果每个进程已经占有了 2 台打印机，那么只要还有多的打印机，总能满足一个进程达到 3 台的条件，然后顺利执行，所以将 8 台打印机分给 K 个进程，每个进程有 2 台打印机，这\n个情况就是极端情况，K 为 4。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "文件系统"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 26,
+  "内容": "<div class=\"content\"><p>分区分配内存管理方式的主要保护措施是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 界地址保护",
+   "B. 程序代码保护",
+   "C. 数据保护",
+   "D. 栈保护"
+  ],
+  "答案": "A",
+  "解析": "每个进程都拥有自己独立的 内存空间，若一个进程在运行时所产生的地址在其地址空间之外，则发生地址越界，因此需要进行界地址保护，即当程序要访问某个内存单元时，由硬件检查是否允许，如果允许则执行，否则产生地址越界中断。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "I/O管理"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 27,
+  "内容": "<div class=\"content\"><p>一个分段存储管理系统中，地址长度为 32 位，其中段号占 8 位，则最大段长是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 2 8 字节",
+   "B. 2 16 字节",
+   "C. 2 24 字节",
+   "D. 2 32 字节"
+  ],
+  "答案": "C",
+  "解析": "段式管理 的逻辑地址分为段号和位移量两部分，段内位移的最大值就是最大段长。地址长度为 32 位，段号占 8 位，则位移量占 32-8=24 位，故最大段长为\n2\n24\nB。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "死锁"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 28,
+  "内容": "<div class=\"content\"><p>下列文件物理结构中，适合随机访问且易于文件扩展的是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 连续结构",
+   "B. 索引结构",
+   "C. 链式结构且磁盘块定长",
+   "D. 链式结构且磁盘块变长"
+  ],
+  "答案": "B",
+  "解析": "文件的物理结构包括连续、链式、索引三种，其中链式结构不能 实现随机访问，连续结构的文件不易于扩展。因此随机访问且易于扩展是索引结构的特性。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "调度"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 29,
+  "内容": "<div class=\"content\"><p>假设磁头当前位于第 105 道，正在向磁道序号增加的方向移动。现有一个磁道访问请求序列为 35，45，12，68，110，180，170，195，采用 SCAN 调度（电梯调度）算法得到的磁道访问序列是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 110,170,180,195,68,45,35,12",
+   "B. 110,68,45,35,12,170,180,195",
+   "C. 110,170,180,195,12,35,45,68",
+   "D. 12,35,45,68,110,170,180,195"
+  ],
+  "答案": "A",
+  "解析": "SCAN 算法类似电梯的工作原理。首先，当磁头从 105 道向序号增加的方向移动时，便会按照从小到大的顺序服务 所有大于 105 的磁道号 (110,170,180,195)；往回移动时又会按照从大到小的顺序进行服务 (68, 45,35, 12)。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "进程管理"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 30,
+  "内容": "<div class=\"content\"><p>文件系统中，文件访问控制信息存储的合理位置是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 文件控制块",
+   "B. 文件分配表",
+   "C. 用户口令表",
+   "D. 系统注册表"
+  ],
+  "答案": "A",
+  "解析": "为了实现“按名存取”，在文件系统中为每个文件设置用于描述和控制文件的数据结构，称之为文件控制块 (FCB )。在文件控制块中，通常包含以下三类信息，即基本信息、存取控制信息及使用信息。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "内存管理"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 31,
+  "内容": "<div class=\"content\"><p>设文件 F1 的当前引用计数值为 1，先建立 F1 的符号链接（软链接）文件 F2，再建立 F1 的硬链接文件 F3，然后删除 F1。此时，F2 和 F3 的引用计数值分别是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 0、1",
+   "B. 1、1",
+   "C. 1、2",
+   "D. 2、1"
+  ],
+  "答案": "B",
+  "解析": "符号链接 是一个单独的文件，创建时它的引用计数值为 1；建立 硬链接 时，源文件引用计数值加 1。删除文件时，删除操作 对于符号链接是不可见的，这并不影响文件系统，当以后再通过符号链接访问时，发现文件不存在，直接删除符号链接；但对于硬链接则不可以直接删除，引用计数值减 1, 若值不为 0, 则不能删除此文件，因为还有其他硬链接指向此文件。\n当建立 F2 时，Fl 和 F2 的引用计数值都为 1。当再建立 F3 时，Fl 和 F3 的引用计数值就都变成了 2。当后来删除 Fl 时，F3 的引用计数值为 2-1 = 1, F2 的引用计数值 一直不变。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "文件系统"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 32,
+  "内容": "<div class=\"content\"><p>程序员利用系统调用打开 I/O 设备时，通常使用的设备标识是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 逻辑设备名",
+   "B. 物理设备名",
+   "C. 主设备号",
+   "D. 从设备号"
+  ],
+  "答案": "A",
+  "解析": "设备管理具有设备独立性的特点，操作系统以系统调用方式来请求某类设备时，使用的是 逻辑设备名。而在程序实际执行时，将逻辑设备名 转换为对应的 物理设备名。",
+  "科目": "操作系统",
+  "章节": [],
+  "标签": [
+   "I/O管理"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 33,
+  "内容": "<div class=\"content\"><p>在 OSI 参考模型中，自下而上第一个提供端到端服务的层次是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 数据链路层",
+   "B. 传输层",
+   "C. 会话层",
+   "D. 应用层"
+  ],
+  "答案": "B",
+  "解析": "传输层 提供应用进程间的逻辑通信（通过端口号），即端到端的通信。而数据链路层负责相邻结点之间的通信，这个结点包括了交换机和路由器等数据通信 设备，这些设备 不能称为端系统。网络层负责主机到主机的逻辑通信。因此选 B。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "体系结构"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 34,
+  "内容": "<div class=\"content\"><p>在无噪声情况下，若某低通通信链路的带宽为 3kHz，采用 4 个相位，每个相位具有 4 种振幅的 QAM 调制技术，则该通信链路的最大数据传输速率是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 12kbps",
+   "B. 24kbps",
+   "C. 48kbps",
+   "D. 96kbps"
+  ],
+  "答案": "B",
+  "解析": "采用 4 个相位，每个相位有 4 种幅度的 QAM 调制方法，每个信号可以有 16 种变化，传输 4bit 的数据。根据 奈奎斯特定理，信息的最大传输速率为 2×3k×4=24kbps。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "物理层"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 35,
+  "内容": "<div class=\"content\"><p>数据链路层采用后退 N 帧（GBN）协议，发送方已经发送了编号为 0~7 的帧。当计时器超时时，若发送方只收到 0、2、3 号帧的确认，则发送方需要重发的帧数是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 2",
+   "B. 3",
+   "C. 4",
+   "D. 5"
+  ],
+  "答案": "C",
+  "解析": "在 回退 N 帧 中，当接收方检测到某个帧出错后，则简单地丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有帧。这里应注意，连续 ARQ 协议中，接收方一般采用累积确认的方式，即接收方对按序到达的最后一个分组发送确认，因此本题中收到 3 的确认帧就表示编号为 0,1,2,3 的帧已接收，而此时发送方未收到 1 号帧的确认只能代表确认帧在返回的过程中丢失了，而不代表 1 号帧未到达接收方。因此需要重传的帧为编号是 4,5,6，\n7 的帧。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "链路层"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 36,
+  "内容": "<div class=\"content\"><p>以太网交换机进行转发决策时使用的 PDU 地址是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 目的物理地址",
+   "B. 目的 IP 地址",
+   "C. 源物理地址",
+   "D. 源 IP 地址"
+  ],
+  "答案": "A",
+  "解析": "交换机 实质上是一个多端口网桥，工作在数据链路层，数据链路层 使用物理地址进行转发，而转发到目的地通常是使用 目的地址。因此 POU 地址是目的物理地址。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "网络层"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 37,
+  "内容": "<div class=\"content\"><p>在一个采用 CSMA/CD 协议的网络中，传输介质是一根完整的电缆，传输速率为 1Gbps，电缆中的信号传播速度是 200 000km/s。若最小数据帧长度减少 800 比特，则最远的两个站点之间的距离至少需要（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 增加 160m",
+   "B. 增加 80m",
+   "C. 减少 160m",
+   "D. 减少 80m"
+  ],
+  "答案": "D",
+  "解析": "本题考查 CSMA/CD 的限制条件。若最短帧长减少，而数据传输速率不变，则需要使冲突域的最大距离变短来实现碰撞窗口的减少。碰撞窗口是指网络中收发结点间的往返时延，因此假设需要减少的最小距离为 S, 则可以得到如下公式（注意单位的转换）：\n减少的往返时延=减少的发送时延，即\n2\n×\n[\ns\n/\n(\n2\n×\n1\n0\n8\n)]\n=\n800/\n(\n1\n×\n1\n0\n9\n)\n。即，由于帧长减少而缩短的发送时延，应等于由于距离减少而缩短的传播时延的 2 倍。\n可得 s=80, 即最远的两个站点之间的距离最少需要减少 80m。\n【注意】CSMA/CD 的碰撞窗口 = 2 倍传播时延，报文发送时间 » 碰撞窗口。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "传输层"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 38,
+  "内容": "<div class=\"content\"><p>主机甲与主机乙之间已建立一个 TCP 连接，主机甲向主机乙发送了两个连续的 TCP 段，分别包含 300 字节和 500 字节的有效载荷，第一个段的序列号为 200，主机乙正确接收到两个段后，发送给主机甲的确认序列号是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 500",
+   "B. 700",
+   "C. 800",
+   "D. 1000"
+  ],
+  "答案": "D",
+  "解析": "返回的确认序列号是接收端期待收到对方下一个报文段数据部分的第一个字节的序号，因此乙在正确接收到两个段后，返回给甲的确认序列号是 200+ 300 + 500 = 1000。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "应用层"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 39,
+  "内容": "<div class=\"content\"><p>一个 TCP 连接总是以 1KB 的最大段长发送 TCP 段，发送方有足够多的数据要发送。当拥塞窗口为 16KB 时发生了超时，如果接下来的 4 个 RTT（往返时间）时间内的 TCP 段的传输都是成功的，那么当第 4 个 RTT 时间内发送的所有 TCP 段都得到肯定应答时，拥塞窗口大小是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 7 KB",
+   "B. 8 KB",
+   "C. 9 KB",
+   "D. 16 KB"
+  ],
+  "答案": "C",
+  "解析": "在发生超时后，慢开始门限 ssthresh 变为 16KB/2 = 8KB，拥塞窗口变为 1KB。在接下来的 3 个 RTT 内，执行 慢开始 算法，拥塞窗口大小依次为 2KB、4KB、8KB，由于慢开始门限 ssthresh 为 8KB，因此之后转而执行 拥塞避免 算法，即拥塞窗口开始“加法增大”。因此第 4 个 RTT 结束后，拥塞窗口的大小为 9KB。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "体系结构"
+  ]
+ },
+ {
+  "年份": 2009,
+  "题号": 40,
+  "内容": "<div class=\"content\"><p>FTP 客户和服务器间传递 FTP 命令时，使用的连接是（）。</p>\n\n\n\n</div>",
+  "选项": [
+   "A. 建立在 TCP 之上的控制连接",
+   "B. 建立在 TCP 之上的数据连接",
+   "C. 建立在 UDP 之上的控制连接",
+   "D. 建立在 UDP 之上的数据连接"
+  ],
+  "答案": "A",
+  "解析": "对于 FTP 文件传输，为了保证可靠性，选择 TCP 协议，排除 C、D。FTP 的控制信息是带外传送的，也即 FTP 使用了一个分离的控制连接来传送命令，故选 A。",
+  "科目": "计算机网络",
+  "章节": [],
+  "标签": [
+   "物理层"
+  ]
+ }
+]

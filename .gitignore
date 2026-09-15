@@ -1,0 +1,32 @@
+# Build outputs
+target/
+frontend/dist/
+node_modules/
+
+# 旧版单工程布局：根目录 src/ 下的静态数据已迁移到 backend/src/main/resources/static
+/src/
+
+# 本地数据库文件（H2），正式库为 MySQL
+backend/data/
+*.mv.db
+*.trace.db
+
+# 日志
+*.log
+
+# 工具/编辑器目录
+.idea/
+.vscode/
+.codex/
+.mimocode/
+.trae/
+.screenshots/
+output/
+uml_images/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 可再生的迁移数据快照（约22MB，保留 docs/migration 下的脚本即可）
+docs/migration/mysql_load.sql
