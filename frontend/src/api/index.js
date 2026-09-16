@@ -42,9 +42,17 @@ export default {
   markReviewed: (id) => api.put(`/wrong/${id}/review`),
   recordReviewResult: (id, correct) => api.post(`/wrong/${id}/review-result`, { correct }),
   getWrongCount: () => api.get('/wrong/count'),
+  setWrongReason: (id, reason) => api.put(`/wrong/${id}/reason`, { reason }),
+  getReasonStats: () => api.get('/wrong/reason-stats'),
+  getReviewToday: () => api.get('/wrong/review-today'),
 
   getStats: () => api.get('/stats/overview'),
   getDashboard: () => api.get('/stats/dashboard'),
+  getHeatmap: () => api.get('/stats/heatmap'),
+  getMastery: () => api.get('/stats/mastery'),
+  getCalendar: () => api.get('/stats/calendar'),
+  getCountdown: () => api.get('/stats/countdown'),
+  getMonthlyReport: (month) => api.get('/stats/monthly-report', { params: { month } }),
 
   // AI 学情诊断
   getDiagnosis: () => api.post('/ai/diagnosis'),

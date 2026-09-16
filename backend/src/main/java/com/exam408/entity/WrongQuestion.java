@@ -25,4 +25,7 @@ public class WrongQuestion {
 
     /** 下次复习时间：空则视为到期待复习 */
     private LocalDateTime nextReviewAt;
+
+    /** 错误原因归类：概念不清/粗心/计算错/审题不清/其他 */
+    private String reason;
 }

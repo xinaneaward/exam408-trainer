@@ -11,6 +11,7 @@ const routes = [
   { path: '/visualization', name: 'AlgorithmList', component: () => import('../views/visualization/AlgorithmList.vue'), meta: { auth: true } },
   { path: '/visualization/:category/:algoKey', name: 'AlgorithmDemo', component: () => import('../views/visualization/AlgorithmDemo.vue'), meta: { auth: true } },
   { path: '/overview', name: 'Overview', component: () => import('../views/KnowledgeOverview.vue'), meta: { auth: true } },
+  { path: '/report', name: 'Report', component: () => import('../views/Report.vue'), meta: { auth: true } },
   { path: '/smart-exam', name: 'SmartExam', component: () => import('../views/SmartExam.vue'), meta: { auth: true } }
 ]
 

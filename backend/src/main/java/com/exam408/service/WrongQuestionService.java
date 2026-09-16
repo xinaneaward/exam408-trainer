@@ -24,4 +24,10 @@ public interface WrongQuestionService {
     Map<String, Integer> countBySubject(Long userId);
     /** 获取错题总数 */
     Integer countByUser(Long userId);
+    /** 为错题打原因标签（概念不清/粗心/计算错/审题不清/其他） */
+    void setReason(Long userId, Long wrongQuestionId, String reason);
+    /** 错题原因分布统计 */
+    Map<String, Object> countByReason(Long userId);
+    /** 今日待复习错题（到期且未掌握） */
+    List<WrongQuestion> listDueToday(Long userId);
 }

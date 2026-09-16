@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `wrong_question` (
     `is_reviewed` TINYINT(1) DEFAULT 0 COMMENT '是否已复习',
     `review_stage` INT DEFAULT 0 COMMENT '间隔重复阶段',
     `next_review_at` DATETIME COMMENT '下次复习时间(空=待复习)',
+    `reason` VARCHAR(20) COMMENT '错题原因: 概念不清/粗心/计算错/审题不清/其他',
     UNIQUE KEY `uk_user_question` (`user_id`, `question_id`),
     INDEX `idx_user_reviewed` (`user_id`, `is_reviewed`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

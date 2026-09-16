@@ -61,6 +61,7 @@ public class WrongQuestionController {
             map.put("isReviewed", wq.getIsReviewed());
             map.put("reviewStage", wq.getReviewStage());
             map.put("nextReviewAt", wq.getNextReviewAt());
+            map.put("reason", wq.getReason());
             map.put("isDue", !wq.getIsReviewed() && (wq.getNextReviewAt() == null || !wq.getNextReviewAt().isAfter(now)));
             if (q != null) {
                 map.put("content", q.getContent());
@@ -181,5 +182,68 @@ public class WrongQuestionController {
         result.put("total", total);
         result.put("bySubject", bySubject);
         return ApiResponse.success(result);
+    }
+
+    /** 为错题打原因标签：概念不清/粗心/计算错/审题不清/其他 */
+    @PutMapping("/{wrongId}/reason")
+    public ApiResponse<Void> setReason(@PathVariable Long wrongId,
+                                       @RequestBody(required = false) Map<String, Object> body,
+                                       HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return ApiResponse.error(401, "请先登录");
+        String reason = body != null ? String.valueOf(body.get("reason")) : null;
+        wrongQuestionService.setReason(user.getId(), wrongId, "null".equalsIgnoreCase(reason) ? null : reason);
+        return ApiResponse.success();
+    }
+
+    /** 错题原因分布统计 */
+    @GetMapping("/reason-stats")
+    public ApiResponse<Map<String, Object>> reasonStats(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return ApiResponse.error(401, "请先登录");
+        return ApiResponse.success(wrongQuestionService.countByReason(user.getId()));
+    }
+
+    /** 今日待复习错题：到期（next_review_at 为空或已到）且未掌握 */
+    @GetMapping("/review-today")
+    public ApiResponse<Map<String, Object>> reviewToday(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return ApiResponse.error(401, "请先登录");
+
+        List<WrongQuestion> due = wrongQuestionService.listDueToday(user.getId());
+        List<Map<String, Object>> items = new ArrayList<>();
+        for (WrongQuestion wq : due) {
+            Question q = wrongQuestionService.getQuestionById(wq.getQuestionId());
+            if (q == null) continue;
+            Map<String, Object> map = new LinkedHashMap<>();
+            map.put("wrongId", wq.getId());
+            map.put("questionId", wq.getQuestionId());
+            map.put("subject", q.getSubject());
+            map.put("type", q.getType());
+            map.put("year", q.getExamYear());
+            map.put("knowledgeTag", q.getKnowledgeTag());
+            map.put("chapter", extractChapter(q.getKnowledgeTag()));
+            map.put("wrongCount", wq.getWrongCount());
+            map.put("reviewStage", wq.getReviewStage());
+            map.put("nextReviewAt", wq.getNextReviewAt());
+            map.put("reason", wq.getReason());
+            items.add(map);
+        }
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("count", items.size());
+        result.put("items", items);
+        return ApiResponse.success(result);
+    }
+
+    /** 从知识点标签中提取章节：形如 “计算机组成原理 — 存储系统” */
+    private String extractChapter(String knowledgeTag) {
+        if (knowledgeTag == null || knowledgeTag.trim().isEmpty()) return "未分类";
+        String tag = knowledgeTag.trim();
+        String[] parts = tag.split("[—–-]");
+        if (parts.length >= 2 && !parts[1].trim().isEmpty()) {
+            return parts[1].trim();
+        }
+        return tag;
     }
 }

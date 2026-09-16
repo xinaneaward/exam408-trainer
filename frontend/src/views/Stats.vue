@@ -5,6 +5,7 @@
       <main class="page-content">
       <div class="page-header">
         <h2>学习统计</h2>
+        <button class="btn btn-primary btn-sm" @click="$router.push('/report')">📄 导出月学习报告</button>
       </div>
 
       <div class="stats-grid">
@@ -40,6 +41,89 @@
           <div class="accuracy-bar">
             <div class="accuracy-fill" :class="subject.level" :style="{ width: subject.accuracy + '%' }"></div>
           </div>
+        </div>
+      </div>
+
+      <!-- 掌握度雷达 + 覆盖率 -->
+      <div class="card">
+        <div class="card-title">掌握度雷达与题目覆盖率</div>
+        <div class="mastery-grid">
+          <div class="radar-box">
+            <svg :viewBox="`0 0 ${radar.size} ${radar.size}`" class="radar-svg">
+              <g v-for="r in 4" :key="'ring' + r">
+                <polygon :points="radar.ringPoints(r * 25)" fill="none" stroke="var(--border)" stroke-width="1" />
+              </g>
+              <line
+                v-for="(s, i) in masterySubs" :key="'axis' + i"
+                :x1="radar.center" :y1="radar.center"
+                :x2="radar.axisPoint(s, 100).x" :y2="radar.axisPoint(s, 100).y"
+                stroke="var(--border)" stroke-width="1"
+              />
+              <polygon :points="radar.dataPolygon" fill="rgba(5, 150, 105, 0.25)" stroke="var(--success)" stroke-width="2" stroke-linejoin="round" />
+              <g v-for="(s, i) in masterySubs" :key="'lab' + i">
+                <circle :cx="radar.axisPoint(s, Math.max(4, s.mastery)).x" :cy="radar.axisPoint(s, Math.max(4, s.mastery)).y" r="3.5" fill="var(--success)" />
+                <text :x="radar.axisPoint(s, 130).x" :y="radar.axisPoint(s, 130).y" text-anchor="middle" class="radar-name">{{ s.name }}</text>
+                <text :x="radar.axisPoint(s, 108).x" :y="radar.axisPoint(s, 108).y" text-anchor="middle" class="radar-val">掌握 {{ Math.round(s.mastery) }}%</text>
+              </g>
+            </svg>
+            <div class="radar-tip">数值 = 已掌握题目数 / 该科题库总数</div>
+          </div>
+          <div class="coverage-box">
+            <div class="coverage-head">
+              <span>总覆盖率</span>
+              <span class="coverage-num">{{ masteryData.coverage || 0 }}%</span>
+            </div>
+            <div class="accuracy-bar" style="margin-bottom:18px;">
+              <div class="accuracy-fill high" :style="{ width: (masteryData.coverage || 0) + '%' }"></div>
+            </div>
+            <div v-for="ms in masterySubs" :key="ms.name" style="margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:14px; font-weight:500;">{{ ms.name }}</span>
+                <span style="font-size:13px; color:var(--text-secondary);">{{ ms.answered }}/{{ ms.total }} 题 · {{ ms.mastery }}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" :style="{ width: ms.answeredCoverage + '%' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 考点 × 年份 出题热力图 -->
+      <div class="card">
+        <div class="card-title">考点 × 年份 出题热力图（真题分布）</div>
+        <div class="heat-tip">行 = 章节考点，列 = 年份，颜色深浅 = 该考点在该年份出题数量</div>
+        <div v-for="subj in heatmap.subjects" :key="subj.name" class="heat-subject">
+          <div class="heat-subject-name">{{ subj.name }}</div>
+          <div class="heat-wrap">
+            <table class="heat-table">
+              <thead>
+                <tr>
+                  <th class="heat-ch-label">章节</th>
+                  <th v-for="y in heatmap.years" :key="y" class="heat-year">{{ y }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in subj.rows" :key="row.label">
+                  <td class="heat-ch-label">{{ row.label }}</td>
+                  <td v-for="(c, i) in row.counts" :key="i" class="heat-cell-wrap">
+                    <span class="heat-cell" :class="heatLevel(c)" :title="heatmap.years[i] + '年 ' + subj.name + ' ' + row.label + '：' + c + '题'">
+                      {{ c > 0 ? c : '' }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="heat-legend">
+          <span>少</span>
+          <span class="heat-cell lv0"></span>
+          <span class="heat-cell lv1"></span>
+          <span class="heat-cell lv2"></span>
+          <span class="heat-cell lv3"></span>
+          <span class="heat-cell lv4"></span>
+          <span>多</span>
         </div>
       </div>
 
@@ -155,6 +239,9 @@ const stats = ref({})
 const history = ref([])
 const theme = ref(localStorage.getItem('theme') || 'light')
 
+const heatmap = ref({ years: [], subjects: [], maxCount: 1 })
+const masteryData = ref({ coverage: 0, subjects: [] })
+
 // AI 学情诊断
 const diagnosis = ref(null)
 const diagnosisLoading = ref(false)
@@ -185,6 +272,54 @@ const modeLabel = (mode) => {
     wrong: '错题重刷'
   }
   return map[mode] || mode
+}
+
+// ===== 掌握度雷达（手写 SVG） =====
+const masterySubs = computed(() => {
+  return (masteryData.value.subjects || []).map(s => ({
+    ...s,
+    answeredCoverage: s.total > 0 ? Math.round(s.answered / s.total * 100) : 0
+  }))
+})
+
+const radar = computed(() => {
+  const size = 300
+  const center = 150
+  const radius = 105
+  const subs = masterySubs.value
+  const pos = (val, angleDeg) => {
+    const ang = (angleDeg - 90) * Math.PI / 180
+    const r = radius * Math.min(100, Math.max(0, val)) / 100
+    return { x: center + r * Math.cos(ang), y: center + r * Math.sin(ang) }
+  }
+  const ringPoints = (val) => subs.map((s, i) => {
+    const p = pos(val, i * 90)
+    return `${p.x},${p.y}`
+  }).join(' ')
+  const dataPolygon = subs.map((s, i) => {
+    const p = pos(s.mastery || 0, i * 90)
+    return `${p.x},${p.y}`
+  }).join(' ')
+  return {
+    size, center, radius,
+    ringPoints,
+    dataPolygon,
+    axisPoint: (s, val) => {
+      const i = subs.findIndex(x => x.name === s.name)
+      return pos(val, (i < 0 ? 0 : i) * 90)
+    }
+  }
+})
+
+// ===== 热力图颜色分级 =====
+const heatLevel = (count) => {
+  if (count <= 0) return 'lv0'
+  const max = heatmap.value.maxCount || 1
+  const r = count / max
+  if (r <= 0.35) return 'lv1'
+  if (r <= 0.65) return 'lv2'
+  if (r <= 0.85) return 'lv3'
+  return 'lv4'
 }
 
 const formatDate = (dateStr) => {
@@ -249,6 +384,24 @@ onMounted(async () => {
   } catch (e) {
     // ignore
   }
+
+  try {
+    const heatR = await api.getHeatmap()
+    if (heatR.data.code === 200) {
+      heatmap.value = heatR.data.data || { years: [], subjects: [], maxCount: 1 }
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  try {
+    const masR = await api.getMastery()
+    if (masR.data.code === 200) {
+      masteryData.value = masR.data.data || { coverage: 0, subjects: [] }
+    }
+  } catch (e) {
+    // ignore
+  }
 })
 </script>
 
@@ -256,6 +409,53 @@ onMounted(async () => {
 .page-root { min-height:100vh; }
 .page-body { display:flex; }
 .page-content { flex:1; padding:20px; }
+.page-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+
+/* 掌握度雷达 + 覆盖率 */
+.mastery-grid { display:flex; gap:24px; flex-wrap:wrap; }
+.radar-box { flex:1; min-width:260px; max-width:340px; }
+.radar-svg { width:100%; height:auto; display:block; }
+.radar-name { font-size:13px; font-weight:600; fill:var(--text); }
+.radar-val { font-size:11px; fill:var(--success); font-weight:600; }
+.radar-tip { font-size:12px; color:var(--text-muted); text-align:center; margin-top:4px; }
+.coverage-box { flex:1; min-width:280px; }
+.coverage-head {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:14px; font-weight:600; margin-bottom:4px;
+}
+.coverage-num { font-size:20px; font-weight:700; color:var(--primary); }
+
+/* 热力图 */
+.heat-tip { font-size:13px; color:var(--text-secondary); margin-bottom:14px; }
+.heat-subject { margin-bottom:20px; }
+.heat-subject-name {
+  font-size:14px; font-weight:700; margin-bottom:8px; padding-left:10px;
+  border-left:3px solid var(--primary);
+}
+.heat-wrap { overflow-x:auto; }
+.heat-table { border-collapse:collapse; width:100%; font-size:12px; }
+.heat-table th, .heat-table td { padding:2px; text-align:center; }
+.heat-year { font-size:11px; color:var(--text-muted); font-weight:400; min-width:26px; }
+.heat-ch-label {
+  font-size:12px; text-align:left; color:var(--text-secondary);
+  white-space:nowrap; padding-right:8px; font-weight:500;
+}
+.heat-cell-wrap { padding:2px; }
+.heat-cell {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:100%; min-width:22px; height:22px; border-radius:4px;
+  font-size:11px; font-weight:600;
+}
+.heat-cell.lv0 { background:var(--border-light); color:transparent; }
+.heat-cell.lv1 { background:#d6f0e2; color:#1a7a4e; }
+.heat-cell.lv2 { background:#9fdcc0; color:#0f613f; }
+.heat-cell.lv3 { background:#4bb98c; color:#fff; }
+.heat-cell.lv4 { background:#0d7a4c; color:#fff; }
+.heat-legend {
+  display:flex; align-items:center; gap:6px; justify-content:flex-end;
+  font-size:12px; color:var(--text-secondary); margin-top:4px;
+}
+.heat-legend .heat-cell { width:18px; min-width:18px; height:18px; }
 
 /* AI 学情诊断卡片 */
 .diagnosis-card { border: 1px solid rgba(124, 58, 237, 0.2); }

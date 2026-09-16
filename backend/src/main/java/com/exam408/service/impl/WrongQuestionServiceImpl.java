@@ -91,6 +91,61 @@ public class WrongQuestionServiceImpl implements WrongQuestionService {
     }
 
     @Override
+    public void setReason(Long userId, Long wrongQuestionId, String reason) {
+        WrongQuestion wq = wrongQuestionMapper.selectById(wrongQuestionId);
+        if (wq != null && wq.getUserId().equals(userId)) {
+            if (reason == null || reason.trim().isEmpty()) {
+                wq.setReason(null);
+            } else {
+                wq.setReason(reason.trim().substring(0, Math.min(reason.trim().length(), 20)));
+            }
+            wrongQuestionMapper.updateById(wq);
+        }
+    }
+
+    @Override
+    public Map<String, Object> countByReason(Long userId) {
+        List<WrongQuestion> all = listByUser(userId);
+        Map<String, Integer> counts = new LinkedHashMap<>();
+        for (String reason : new String[]{"概念不清", "粗心", "计算错", "审题不清", "其他"}) {
+            counts.put(reason, 0);
+        }
+        int tagged = 0;
+        int untagged = 0;
+        for (WrongQuestion wq : all) {
+            String reason = wq.getReason();
+            if (reason == null || reason.trim().isEmpty()) {
+                untagged++;
+            } else {
+                tagged++;
+                counts.merge(reason.trim(), 1, Integer::sum);
+            }
+        }
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("total", all.size());
+        result.put("tagged", tagged);
+        result.put("untagged", untagged);
+        result.put("counts", counts);
+        return result;
+    }
+
+    @Override
+    public List<WrongQuestion> listDueToday(Long userId) {
+        List<WrongQuestion> all = listByUser(userId);
+        LocalDateTime now = LocalDateTime.now();
+        List<WrongQuestion> due = new ArrayList<>();
+        for (WrongQuestion wq : all) {
+            boolean mastered = Boolean.TRUE.equals(wq.getIsReviewed());
+            if (mastered) continue;
+            LocalDateTime next = wq.getNextReviewAt();
+            if (next == null || !next.isAfter(now)) {
+                due.add(wq);
+            }
+        }
+        return due;
+    }
+
+    @Override
     public Map<String, Integer> countBySubject(Long userId) {
         List<Map<String, Object>> list = wrongQuestionMapper.countGroupBySubject(userId);
         Map<String, Integer> result = new LinkedHashMap<>();

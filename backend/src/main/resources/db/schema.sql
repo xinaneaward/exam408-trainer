@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `wrong_question` (
 );
 ALTER TABLE `wrong_question` ADD COLUMN IF NOT EXISTS `review_stage` INT DEFAULT 0 COMMENT '间隔重复阶段';
 ALTER TABLE `wrong_question` ADD COLUMN IF NOT EXISTS `next_review_at` DATETIME COMMENT '下次复习时间(空=待复习)';
+ALTER TABLE `wrong_question` ADD COLUMN IF NOT EXISTS `reason` VARCHAR(20) COMMENT '错题原因: 概念不清/粗心/计算错/审题不清/其他';
 
 -- AI对话会话表
 CREATE TABLE IF NOT EXISTS `ai_chat_session` (

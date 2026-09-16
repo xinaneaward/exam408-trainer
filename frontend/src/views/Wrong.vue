@@ -143,6 +143,22 @@
         </div>
       </div>
 
+      <div class="card" v-if="reasonStats.total > 0">
+        <div class="card-title">错题原因分布</div>
+        <div class="reason-summary" style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
+          已标注原因 {{ reasonStats.tagged }} / {{ reasonStats.total }} 题（未标注 {{ reasonStats.untagged }} 题，请在列表下方打标）
+        </div>
+        <div v-for="r in reasonOptions" :key="r" style="margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <span style="font-size:14px; font-weight:500;">{{ r }}</span>
+            <span style="font-size:13px; color:var(--text-secondary);">{{ reasonStats.counts?.[r] || 0 }} 题 · {{ reasonPercent(r) }}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" :style="{ width: reasonPercent(r) + '%' }"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="wrong-filter">
         <label class="form-label" style="margin-bottom:0; display:flex; align-items:center; gap:8px;">
           科目筛选：
@@ -179,6 +195,16 @@
         </div>
 
         <div class="question-content" v-html="renderContent(item.content)"></div>
+
+        <div class="reason-row">
+          <span class="reason-label">错误原因：</span>
+          <button
+            v-for="r in reasonOptions" :key="r"
+            class="reason-pill" :class="{ active: item.reason === r }"
+            @click="setReason(item, r)"
+          >{{ r }}</button>
+          <button v-if="item.reason" class="reason-pill clear" @click="setReason(item, '')">清除</button>
+        </div>
 
         <div v-if="parsePageImg(item.content)" style="margin-bottom:12px;">
           <button class="btn btn-outline btn-sm" @click="viewPageImg(parsePageImg(item.content))">📄 查看原题</button>
@@ -238,6 +264,8 @@ const goBack = () => {
 const user = ref(null)
 const wrongItems = ref([])
 const wrongCountData = ref({ total: 0, bySubject: {} })
+const reasonStats = ref({ total: 0, tagged: 0, untagged: 0, counts: {} })
+const reasonOptions = ['概念不清', '粗心', '计算错', '审题不清', '其他']
 const filterSubject = ref('')
 const theme = ref(localStorage.getItem('theme') || 'light')
 
@@ -402,6 +430,7 @@ const exitReview = () => {
   reviewResult.value = null
   loadWrongList()
   loadWrongCount()
+  loadReasonStats()
 }
 
 const startTimer = () => {
@@ -440,6 +469,31 @@ const loadWrongCount = async () => {
   } catch (e) { }
 }
 
+const loadReasonStats = async () => {
+  try {
+    const r = await api.getReasonStats()
+    if (r.data.code === 200) {
+      reasonStats.value = r.data.data || { total: 0, tagged: 0, untagged: 0, counts: {} }
+    }
+  } catch (e) { }
+}
+
+const reasonPercent = (r) => {
+  const total = reasonStats.value.total || 0
+  if (!total) return 0
+  return Math.round((reasonStats.value.counts?.[r] || 0) / total * 100)
+}
+
+const setReason = async (item, reason) => {
+  try {
+    const r = await api.setWrongReason(item.wrongId, reason)
+    if (r.data.code === 200) {
+      item.reason = reason || null
+      loadReasonStats()
+    }
+  } catch (e) { }
+}
+
 const isDue = (item) => {
   if (item.isReviewed) return false
   if (item.nextReviewAt == null) return true
@@ -462,6 +516,7 @@ const removeItem = async (id) => {
     if (r.data.code === 200) {
       wrongItems.value = wrongItems.value.filter(i => i.wrongId !== id)
       loadWrongCount()
+      loadReasonStats()
     }
   } catch (e) { }
 }
@@ -477,6 +532,7 @@ onMounted(() => {
   user.value = raw ? JSON.parse(raw) : null
   loadWrongList()
   loadWrongCount()
+  loadReasonStats()
 })
 
 onBeforeUnmount(() => {
@@ -491,4 +547,22 @@ onBeforeUnmount(() => {
 .page-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
 .exam-topbar { border:1px solid var(--border); border-radius:12px; padding:12px 16px; }
 .se-nav-buttons button { min-width:110px; }
+
+/* 错题原因打标 */
+.reason-row {
+  display:flex; align-items:center; flex-wrap:wrap; gap:6px;
+  margin-bottom:12px; padding:8px 0;
+}
+.reason-label { font-size:13px; color:var(--text-secondary); margin-right:2px; }
+.reason-pill {
+  padding:3px 12px; border-radius:14px; border:1px solid var(--border);
+  background:var(--bg-card); color:var(--text-secondary);
+  font-size:12px; cursor:pointer; transition:all 0.2s;
+}
+.reason-pill:hover { border-color:var(--primary); color:var(--primary); }
+.reason-pill.active {
+  background:rgba(5,150,105,0.15); border-color:var(--primary);
+  color:var(--success); font-weight:600;
+}
+.reason-pill.clear { border-style:dashed; }
 </style>
