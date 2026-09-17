@@ -114,8 +114,18 @@ const selectedPoint = ref(null)
 const expandedSubjects = reactive({})
 const expandedChapters = reactive({})
 
-const years = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009]
+const years = ref([2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009])
 const subjects = ['数据结构', '计算机组成原理', '操作系统', '计算机网络']
+// 科目名 -> 后端热力图使用的科目编码
+const SUBJECT_CODES = {
+  '数据结构': 'DS',
+  '计算机组成原理': 'CO',
+  '操作系统': 'OS',
+  '计算机网络': 'CN'
+}
+// 后端 /api/knowledge-tree 返回的真实掌握度数据：year -> code -> cell
+const heatmapData = ref({})
+const treeLoading = ref(false)
 
 const defaultKnowledgeTree = [
   {
@@ -413,6 +423,13 @@ function selectPoint(point) {
 }
 
 function getPointStatus(point) {
+  // 后端返回的真实状态优先：mastered / unfamiliar / unknown / undone
+  if (point.status) {
+    if (point.status === 'mastered') return 'dot-green'
+    if (point.status === 'unfamiliar') return 'dot-yellow'
+    if (point.status === 'unknown') return 'dot-red'
+    return 'dot-white'
+  }
   const count = point.count || 0
   if (count === 0) return 'dot-white'
   const mastered = point.mastered || 0
@@ -421,47 +438,37 @@ function getPointStatus(point) {
   return 'dot-red'
 }
 
-const subjectQuestionCounts = {
-  '数据结构': 47,
-  '计算机组成原理': 47,
-  '操作系统': 47,
-  '计算机网络': 47
-}
-
 function getCellClass(year, subject) {
-  const percent = getCellPercent(year, subject)
+  const cell = getCell(year, subject)
+  if (!cell || !cell.totalQuestions) return 'hm-cell-0'
+  if (!cell.answeredCount) return 'hm-cell-0'
+  const percent = cell.mastery || 0
   if (percent >= 80) return 'hm-cell-1'
   if (percent >= 50) return 'hm-cell-2'
   if (percent >= 20) return 'hm-cell-3'
   return 'hm-cell-0'
 }
 
+/** 取后端热力图单元格（真实答题数据） */
+function getCell(year, subject) {
+  const code = SUBJECT_CODES[subject]
+  if (!code) return null
+  return heatmapData.value?.[year]?.[code] || null
+}
+
 function getCellPercent(year, subject) {
-  const basePercents = {
-    2025: { '数据结构': 100, '计算机组成原理': 100, '操作系统': 100, '计算机网络': 100 },
-    2024: { '数据结构': 95, '计算机组成原理': 95, '操作系统': 95, '计算机网络': 95 },
-    2023: { '数据结构': 90, '计算机组成原理': 90, '操作系统': 90, '计算机网络': 90 },
-    2022: { '数据结构': 85, '计算机组成原理': 85, '操作系统': 85, '计算机网络': 85 },
-    2021: { '数据结构': 80, '计算机组成原理': 80, '操作系统': 80, '计算机网络': 80 },
-    2020: { '数据结构': 75, '计算机组成原理': 75, '操作系统': 75, '计算机网络': 75 },
-    2019: { '数据结构': 70, '计算机组成原理': 70, '操作系统': 70, '计算机网络': 70 },
-    2018: { '数据结构': 65, '计算机组成原理': 65, '操作系统': 65, '计算机网络': 65 },
-    2017: { '数据结构': 60, '计算机组成原理': 60, '操作系统': 60, '计算机网络': 60 },
-    2016: { '数据结构': 55, '计算机组成原理': 55, '操作系统': 55, '计算机网络': 55 },
-    2015: { '数据结构': 50, '计算机组成原理': 50, '操作系统': 50, '计算机网络': 50 },
-    2014: { '数据结构': 45, '计算机组成原理': 45, '操作系统': 45, '计算机网络': 45 },
-    2013: { '数据结构': 40, '计算机组成原理': 40, '操作系统': 40, '计算机网络': 40 },
-    2012: { '数据结构': 35, '计算机组成原理': 35, '操作系统': 35, '计算机网络': 35 },
-    2011: { '数据结构': 30, '计算机组成原理': 30, '操作系统': 30, '计算机网络': 30 }
-  }
-  return basePercents[year]?.[subject] || Math.floor(Math.random() * 30) + 20
+  const cell = getCell(year, subject)
+  if (!cell || !cell.totalQuestions) return 0
+  return Math.round(cell.mastery || 0)
 }
 
 function getCellTitle(year, subject) {
-  const count = subjectQuestionCounts[subject] || 47
-  const percent = getCellPercent(year, subject)
-  const questionCount = Math.round(count * percent / 100)
-  return `${year}年 ${subject}\n共${count}题，占比${percent}%（约${questionCount}题）`
+  const cell = getCell(year, subject)
+  if (!cell || !cell.totalQuestions) return `${year}年 ${subject}\n暂无题目数据`
+  const total = cell.totalQuestions
+  const answered = cell.answeredCount || 0
+  const correct = cell.correctCount || 0
+  return `${year}年 ${subject}\n共${total}题，已答${answered}题，答对${correct}题（掌握度${getCellPercent(year, subject)}%）`
 }
 
 function startYearExam(year) {
@@ -492,14 +499,61 @@ function getPointSubject(point) {
 }
 
 onMounted(() => {
+  // 先用静态结构兜底渲染，随后用后端真实数据覆盖
   knowledgeTree.value = defaultKnowledgeTree
+  expandFirstNodes()
+  loadKnowledgeTree()
+})
+
+function expandFirstNodes() {
   if (knowledgeTree.value.length) {
     expandedSubjects[knowledgeTree.value[0].name] = true
     if (knowledgeTree.value[0].children?.length) {
       expandedChapters[knowledgeTree.value[0].children[0].name] = true
     }
   }
-})
+}
+
+/** 把后端 /api/knowledge-tree 的知识树结构转换为页面使用的 children/count/status 结构 */
+function mapSubjectTree(subjects) {
+  return (subjects || []).map(subject => ({
+    name: subject.name,
+    code: subject.code,
+    masteryPercent: subject.masteryPercent,
+    totalQuestions: subject.totalQuestions,
+    children: (subject.chapters || []).map(chapter => ({
+      name: chapter.name,
+      children: (chapter.points || []).map(point => ({
+        name: point.name,
+        count: point.questionCount || 0,
+        status: point.status || 'undone'
+      }))
+    }))
+  }))
+}
+
+async function loadKnowledgeTree() {
+  treeLoading.value = true
+  try {
+    const r = await api.getKnowledgeTree()
+    if (r?.data?.code === 200 && r.data.data) {
+      const data = r.data.data
+      if (Array.isArray(data.subjects) && data.subjects.length) {
+        knowledgeTree.value = mapSubjectTree(data.subjects)
+        expandFirstNodes()
+      }
+      if (data.heatmap && Object.keys(data.heatmap).length) {
+        heatmapData.value = data.heatmap
+      }
+      if (Array.isArray(data.years) && data.years.length) {
+        years.value = data.years
+      }
+    }
+  } catch (e) {
+    // 请求失败时保留静态结构，热力图显示为空
+  }
+  treeLoading.value = false
+}
 </script>
 
 <style scoped>

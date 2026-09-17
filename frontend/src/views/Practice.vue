@@ -326,6 +326,23 @@
               </div>
             </div>
           </div>
+
+          <!-- 单题模式底部常驻翻页条：长题目滚动后也能随时切题 -->
+          <div class="question-pager">
+            <button class="pager-btn" :disabled="practiceIndex === 0" @click="prevPracticeQuestion">← 上一题</button>
+            <div class="pager-progress">
+              <span class="pager-index">{{ practiceIndex + 1 }} / {{ practiceQuestions.length }}</span>
+              <input
+                class="pager-slider"
+                type="range"
+                min="1"
+                :max="practiceQuestions.length"
+                :value="practiceIndex + 1"
+                @input="jumpToPracticeQuestion($event)"
+              />
+            </div>
+            <button class="pager-btn pager-btn-primary" :disabled="practiceIndex >= practiceQuestions.length - 1" @click="nextPracticeQuestion">下一题 →</button>
+          </div>
         </template>
 
         <template v-else-if="practiceMode === 'list' && practiceQuestions.length">
@@ -1283,6 +1300,7 @@ function prevPracticeQuestion() {
     practiceIndex.value--
     loadCurrentPracticeQ()
     savePracticeResume()
+    scrollToQuestionTop()
   }
 }
 
@@ -1291,6 +1309,28 @@ function nextPracticeQuestion() {
     practiceIndex.value++
     loadCurrentPracticeQ()
     savePracticeResume()
+    scrollToQuestionTop()
+  }
+}
+
+/** 拖动进度条直接跳题 */
+function jumpToPracticeQuestion(e) {
+  const target = parseInt(e?.target?.value, 10)
+  if (isNaN(target)) return
+  const idx = Math.min(Math.max(target - 1, 0), practiceQuestions.value.length - 1)
+  if (idx === practiceIndex.value) return
+  practiceIndex.value = idx
+  loadCurrentPracticeQ()
+  savePracticeResume()
+  scrollToQuestionTop()
+}
+
+/** 切题后回到题目顶部，避免停留在上一题中部 */
+function scrollToQuestionTop() {
+  try {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  } catch (e) {
+    window.scrollTo(0, 0)
   }
 }
 
@@ -2828,4 +2868,69 @@ body.dark-mode .answer-card-btn:hover { border-color: #3b82f6; }
 body.dark-mode .answer-card-btn.answered { background: #3b82f6; color: #fff; border-color: #3b82f6; }
 body.dark-mode .confirm-modal { background: #1e293b; color: #f1f5f9; }
 body.dark-mode .confirm-modal h3 { color: #f1f5f9; }
+
+/* ===== 单题模式底部翻页条 ===== */
+.question-pager {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 12px 18px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+}
+.pager-btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #e5e7eb);
+  background: transparent;
+  color: var(--text, #1f2937);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.pager-btn:hover:not(:disabled) { border-color: #059669; color: #059669; }
+.pager-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.pager-btn-primary {
+  background: #059669;
+  border-color: #059669;
+  color: #fff;
+}
+.pager-btn-primary:hover:not(:disabled) { background: #047857; border-color: #047857; color: #fff; }
+.pager-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.pager-index {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pager-slider {
+  flex: 1;
+  min-width: 60px;
+  accent-color: #059669;
+  cursor: pointer;
+}
+body.dark-mode .question-pager { background: #1e293b; border-color: #334155; }
+body.dark-mode .pager-btn { color: #e2e8f0; border-color: #334155; }
+body.dark-mode .pager-btn:hover:not(:disabled) { border-color: #10b981; color: #10b981; }
+body.dark-mode .pager-index { color: #94a3b8; }
+@media (max-width: 640px) {
+  .question-pager { gap: 8px; padding: 10px 12px; }
+  .pager-btn { padding: 8px 12px; font-size: 13px; }
+  .pager-slider { display: none; }
+}
 </style>

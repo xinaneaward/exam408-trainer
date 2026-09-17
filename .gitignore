@@ -24,9 +24,25 @@ backend/data/
 output/
 uml_images/
 
+# Python 提取/修复脚本（非项目核心代码）
+*.py
+
+# 提取的数据文件
+answer_data.json
+backend/answer_data.json
+backend/extracted_data.sql
+backend/extracted_questions.json
+
+# 文档/迁移脚本
+docs/
+
+# 需求分析文档（本地保留，不入仓库）
+实训1_项目需求分析.docx
+实训1_项目需求分析.pdf
+
+# 临时测试文件
+backend/src/main/resources/static/test-images.html
+
 # OS
 .DS_Store
 Thumbs.db
-
-# 可再生的迁移数据快照（约22MB，保留 docs/migration 下的脚本即可）
-docs/migration/mysql_load.sql
